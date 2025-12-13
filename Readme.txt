@@ -36,7 +36,8 @@ FONCTIONNALITÉS INTERACTIVES
 - Design responsive et moderne
 
 SPÉCIFICITÉS GABONAISES
-- Couleurs nationales : Vert, Jaune, Bleu du drapeau gabonais
+- Couleurs USTS : Palette harmonisée avec le logo de l'Université des Sciences
+  et Techniques de la Santé (vert, bleu, or, beige, argent)
 - Vaccinations obligatoires : Fièvre jaune (certificat international requis)
 - Centres agréés : Liste des centres de vaccination à Libreville
 - Contacts PEV : Numéros d'urgence (1414, 1300)
@@ -202,10 +203,13 @@ FONCTIONNALITÉS FUTURES POSSIBLES
 
 PERSONNALISATION
 Les couleurs et styles peuvent être modifiés via les variables CSS dans
-style.css :
-  --gabon-green: #3a9d5a;
-  --gabon-yellow: #fcd20a;
-  --gabon-blue: #0a4c8c;
+style.css. Les couleurs sont harmonisées avec le logo USTS :
+  --usts-green: #2d7a47;        (Vert de la couverture du livre)
+  --usts-blue: #0a4c8c;         (Bleu de la bande du livre)
+  --usts-gold: #d4af37;          (Or des branches de laurier)
+  --usts-beige: #f5e6d3;         (Beige des pages du livre)
+  --usts-ivory: #faf8f3;         (Ivoire du fond)
+  --usts-silver: #c0c0c0;        (Argent du caducée et bordure)
 
 
 LICENCE

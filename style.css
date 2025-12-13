@@ -6,21 +6,39 @@
 }
 
 :root {
-  --gabon-green: #3a9d5a;
-  --gabon-yellow: #fcd20a;
-  --gabon-blue: #0a4c8c;
-  --gabon-green-light: #e8f5e9;
-  --gabon-yellow-light: #fff9e6;
-  --gabon-blue-light: #e8f4fd;
-  --paper-color: #fffef5;
+  /* Couleurs principales du logo USTS */
+  --usts-green: #2d7a47;        /* Vert de la couverture du livre */
+  --usts-blue: #0a4c8c;         /* Bleu de la bande du livre */
+  --usts-gold: #d4af37;          /* Or des branches de laurier */
+  --usts-beige: #f5e6d3;         /* Beige des pages du livre */
+  --usts-ivory: #faf8f3;         /* Ivoire du fond */
+  --usts-silver: #c0c0c0;        /* Argent du caducée et bordure */
+  --usts-gray: #808080;          /* Gris métallique */
+  
+  /* Couleurs dérivées */
+  --usts-green-light: #e8f5e9;
+  --usts-blue-light: #e3f2fd;
+  --usts-gold-light: #fff8e1;
+  --usts-beige-light: #faf8f3;
+  
+  /* Couleurs de base */
+  --paper-color: #faf8f3;        /* Fond ivoire comme le logo */
   --text-color: #2c3e50;
-  --border-color: #bdc3c7;
+  --border-color: #c0c0c0;       /* Bordure argentée */
   --shadow-color: rgba(0, 0, 0, 0.1);
+  
+  /* Rétrocompatibilité avec les anciennes variables */
+  --gabon-green: var(--usts-green);
+  --gabon-yellow: var(--usts-gold);
+  --gabon-blue: var(--usts-blue);
+  --gabon-green-light: var(--usts-green-light);
+  --gabon-yellow-light: var(--usts-gold-light);
+  --gabon-blue-light: var(--usts-blue-light);
 }
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, var(--usts-beige-light) 0%, var(--usts-ivory) 50%, #e8e8e8 100%);
   color: var(--text-color);
   min-height: 100vh;
   padding: 20px;
@@ -65,15 +83,16 @@ body {
 .cover {
   background: linear-gradient(
     135deg,
-    var(--gabon-green-light) 0%,
-    white 50%,
-    var(--gabon-blue-light) 100%
+    var(--usts-beige) 0%,
+    var(--usts-ivory) 50%,
+    var(--usts-beige-light) 100%
   );
-  border: 5px solid var(--gabon-green);
+  border: 5px solid var(--usts-silver);
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 .cover-header .logos {
@@ -116,7 +135,7 @@ body {
 .usts-circle {
   width: 80px;
   height: 80px;
-  background: linear-gradient(45deg, var(--gabon-green), var(--gabon-blue));
+  background: linear-gradient(135deg, var(--usts-green) 0%, var(--usts-blue) 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -124,7 +143,8 @@ body {
   color: white;
   font-weight: bold;
   font-size: 24px;
-  border: 3px solid var(--gabon-yellow);
+  border: 3px solid var(--usts-gold);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .cover-title {
@@ -133,16 +153,18 @@ body {
 
 .cover-title h1 {
   font-size: 3.5rem;
-  color: var(--gabon-blue);
+  color: var(--usts-blue);
   margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 3px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cover-title h2 {
   font-size: 2.2rem;
-  color: var(--gabon-green);
+  color: var(--usts-green);
   margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .subtitle {
@@ -153,12 +175,13 @@ body {
 
 .edition {
   font-size: 1rem;
-  color: var(--gabon-blue);
+  color: var(--usts-blue);
   font-weight: bold;
   padding: 8px 20px;
-  background-color: var(--gabon-yellow-light);
+  background-color: var(--usts-gold-light);
   display: inline-block;
   border-radius: 20px;
+  border: 1px solid var(--usts-gold);
 }
 
 .cover-info {
@@ -174,12 +197,13 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 6px var(--shadow-color);
   width: 200px;
-  border-top: 4px solid var(--gabon-green);
+  border-top: 4px solid var(--usts-green);
+  border-left: 2px solid var(--usts-silver);
 }
 
 .info-box i {
   font-size: 24px;
-  color: var(--gabon-green);
+  color: var(--usts-green);
   margin-bottom: 10px;
 }
 
@@ -273,7 +297,9 @@ body {
   align-items: center;
   margin-bottom: 30px;
   padding-bottom: 15px;
-  border-bottom: 3px solid var(--gabon-green);
+  border-bottom: 3px solid var(--usts-green);
+  border-left: 4px solid var(--usts-blue);
+  padding-left: 15px;
 }
 
 .section-title {
@@ -285,22 +311,24 @@ body {
 .section-title .icon {
   width: 50px;
   height: 50px;
-  background-color: var(--gabon-green);
+  background: linear-gradient(135deg, var(--usts-green), var(--usts-blue));
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-size: 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--usts-gold);
 }
 
 .section-title h2 {
-  color: var(--gabon-blue);
+  color: var(--usts-blue);
   font-size: 1.5rem;
 }
 
 .section-number {
-  background-color: var(--gabon-blue);
+  background: linear-gradient(135deg, var(--usts-blue), var(--usts-green));
   color: white;
   width: 40px;
   height: 40px;
@@ -310,6 +338,8 @@ body {
   justify-content: center;
   font-weight: bold;
   font-size: 1.2rem;
+  border: 2px solid var(--usts-gold);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header-logos {
@@ -318,12 +348,13 @@ body {
 }
 
 .logo-small {
-  background-color: var(--gabon-yellow);
-  color: var(--gabon-blue);
+  background-color: var(--usts-gold);
+  color: var(--usts-blue);
   padding: 5px 10px;
   border-radius: 4px;
   font-weight: bold;
   font-size: 0.8rem;
+  border: 1px solid var(--usts-silver);
 }
 
 /* CONTENU */
@@ -338,11 +369,13 @@ body {
 }
 
 .form-section h3 {
-  color: var(--gabon-green);
+  color: var(--usts-green);
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
+  border-left: 4px solid var(--usts-gold);
+  padding-left: 10px;
 }
 
 .form-grid {
@@ -359,7 +392,7 @@ body {
 
 .form-group label {
   font-weight: 600;
-  color: var(--gabon-blue);
+  color: var(--usts-blue);
 }
 
 .form-field {
@@ -405,8 +438,9 @@ body {
   align-items: flex-start;
   margin-top: 30px;
   padding: 20px;
-  background-color: var(--gabon-yellow-light);
+  background-color: var(--usts-beige);
   border-radius: 8px;
+  border: 1px solid var(--usts-silver);
 }
 
 .photo-placeholder {
@@ -477,11 +511,12 @@ body {
 }
 
 .vaccine-table th {
-  background-color: var(--gabon-blue);
+  background: linear-gradient(135deg, var(--usts-blue), var(--usts-green));
   color: white;
   padding: 12px;
   text-align: left;
   font-weight: 600;
+  border-bottom: 2px solid var(--usts-gold);
 }
 
 .vaccine-table td {
@@ -490,7 +525,7 @@ body {
 }
 
 .vaccine-table tr:hover {
-  background-color: var(--gabon-green-light);
+  background-color: var(--usts-beige-light);
 }
 
 .status {
@@ -513,13 +548,15 @@ body {
 .check-box {
   width: 20px;
   height: 20px;
-  border: 2px solid var(--gabon-blue);
+  border: 2px solid var(--usts-blue);
   margin: 0 auto;
   cursor: pointer;
+  background-color: white;
 }
 
 .check-box:hover {
-  background-color: var(--gabon-green);
+  background-color: var(--usts-beige);
+  border-color: var(--usts-green);
 }
 
 .info-grid {
@@ -538,11 +575,13 @@ body {
 }
 
 .info-card h4 {
-  color: var(--gabon-blue);
+  color: var(--usts-blue);
   margin-bottom: 15px;
   display: flex;
   align-items: center;
   gap: 10px;
+  border-bottom: 2px solid var(--usts-gold);
+  padding-bottom: 8px;
 }
 
 .info-card ul {
@@ -557,13 +596,14 @@ body {
 .certificat-section {
   margin-top: 30px;
   padding: 20px;
-  background-color: var(--gabon-blue-light);
+  background-color: var(--usts-beige-light);
   border-radius: 8px;
+  border: 1px solid var(--usts-silver);
 }
 
 .certificat-placeholder {
   min-height: 150px;
-  border: 2px dashed var(--gabon-blue);
+  border: 2px dashed var(--usts-blue);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -573,6 +613,7 @@ body {
   color: #666;
   background-color: white;
   margin-top: 15px;
+  border-color: var(--usts-silver);
 }
 
 .certificat-actions {
@@ -583,12 +624,14 @@ body {
 }
 
 .stamp {
-  background-color: var(--gabon-green);
+  background: linear-gradient(135deg, var(--usts-green), var(--usts-blue));
   color: white;
   padding: 8px 20px;
   border-radius: 4px;
   font-weight: bold;
   transform: rotate(-10deg);
+  border: 2px solid var(--usts-gold);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .signature {
@@ -623,10 +666,11 @@ body {
 
 .page-number {
   font-weight: bold;
-  color: var(--gabon-blue);
-  background-color: var(--gabon-yellow-light);
+  color: var(--usts-blue);
+  background-color: var(--usts-gold-light);
   padding: 5px 15px;
   border-radius: 20px;
+  border: 1px solid var(--usts-gold);
 }
 
 .legend {
@@ -670,9 +714,9 @@ body {
 }
 
 .nav-btn {
-  background-color: var(--gabon-green);
+  background: linear-gradient(135deg, var(--usts-green), var(--usts-blue));
   color: white;
-  border: none;
+  border: 2px solid var(--usts-gold);
   padding: 12px 24px;
   border-radius: 4px;
   cursor: pointer;
@@ -680,11 +724,14 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav-btn:hover {
-  background-color: var(--gabon-blue);
+  background: linear-gradient(135deg, var(--usts-blue), var(--usts-green));
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
 }
 
 .nav-btn:disabled {
@@ -694,7 +741,7 @@ body {
 
 .page-indicator {
   font-weight: 600;
-  color: var(--gabon-blue);
+  color: var(--usts-blue);
 }
 
 /* MENU RAPIDE */
@@ -711,8 +758,8 @@ body {
 
 .menu-btn {
   background-color: white;
-  border: 2px solid var(--gabon-green);
-  color: var(--gabon-green);
+  border: 2px solid var(--usts-green);
+  color: var(--usts-green);
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -724,15 +771,18 @@ body {
   transition: all 0.3s;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .menu-btn:hover {
-  background-color: var(--gabon-green);
+  background: linear-gradient(135deg, var(--usts-green), var(--usts-blue));
   color: white;
   width: 120px;
   border-radius: 25px;
   justify-content: flex-start;
   padding-left: 15px;
+  border-color: var(--usts-gold);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .menu-btn span {
