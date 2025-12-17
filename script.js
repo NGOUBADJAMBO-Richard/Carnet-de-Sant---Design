@@ -27,23 +27,29 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuBtns = document.querySelectorAll(".menu-btn");
 
   // Initialisation
-  totalPagesSpan.textContent = totalPages - 1; // -1 car la couverture est page 0
+  if (totalPagesSpan) {
+    totalPagesSpan.textContent = totalPages - 1; // -1 car la couverture est page 0
+  }
   showPage(currentPageIndex);
 
   // Navigation précédent/suivant
-  prevBtn.addEventListener("click", () => {
-    if (currentPageIndex > 0) {
-      currentPageIndex--;
-      showPage(currentPageIndex);
-    }
-  });
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      if (currentPageIndex > 0) {
+        currentPageIndex--;
+        showPage(currentPageIndex);
+      }
+    });
+  }
 
-  nextBtn.addEventListener("click", () => {
-    if (currentPageIndex < totalPages - 1) {
-      currentPageIndex++;
-      showPage(currentPageIndex);
-    }
-  });
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      if (currentPageIndex < totalPages - 1) {
+        currentPageIndex++;
+        showPage(currentPageIndex);
+      }
+    });
+  }
 
   // Menu rapide
   menuBtns.forEach((btn) => {
@@ -95,15 +101,17 @@ document.addEventListener("DOMContentLoaded", function () {
       currentPage.classList.add("active");
 
       // Mettre à jour l'indicateur de page
-      if (index === 0) {
-        currentPageSpan.textContent = "Couverture";
-      } else {
-        currentPageSpan.textContent = index;
+      if (currentPageSpan) {
+        if (index === 0) {
+          currentPageSpan.textContent = "Couverture";
+        } else {
+          currentPageSpan.textContent = index;
+        }
       }
 
       // Gérer les boutons de navigation
-      prevBtn.disabled = index === 0;
-      nextBtn.disabled = index === totalPages - 1;
+      if (prevBtn) prevBtn.disabled = index === 0;
+      if (nextBtn) nextBtn.disabled = index === totalPages - 1;
 
       // Mettre à jour les boutons du menu
       updateMenuButtons(index);

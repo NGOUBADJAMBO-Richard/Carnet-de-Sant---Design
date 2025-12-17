@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page 7 — Carnet de Santé</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body class="page">
+    <header class="page-header">
+      <h1>Page 7</h1>
+      <p>Développement psychomoteur.</p>
+    </header>
+    <main class="page-content">
+      <div class="page" id="page7">
+        <div class="page-header">
+          <div class="section-title">
+            <div class="icon"><i class="fas fa-heartbeat"></i></div>
+            <h2>ÉTAT DE SANTÉ ACTUEL</h2>
+            <div class="section-number">07</div>
+          </div>
+          <div class="header-logos">
+            <span class="logo-small">RG</span>
+            <span class="logo-small">USTS</span>
+          </div>
+        </div>
+
+        <div class="content">
+          <!-- Section 1: Signes vitaux actuels -->
+          <div class="form-section">
+            <h3>
+              <i class="fas fa-heart"></i> Signes vitaux - Dernière mesure
+            </h3>
+            <div class="vitals-grid">
+              <div class="vital-card">
+                <div class="vital-icon">
+                  <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="vital-title">Tension artérielle</div>
+                <div class="vital-value">
+                  <span class="systolic">___</span>/<span class="diastolic"
+                    >___</span
+                  >
+                  <span class="vital-unit">mmHg</span>
+                </div>
+                <div class="vital-date">Date: ___/___/____</div>
+                <div class="vital-status normal">
+                  <i class="fas fa-check-circle"></i> Normale
+                </div>
+              </div>
+
+              <div class="vital-card">
+                <div class="vital-icon">
+                  <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <div class="vital-title">Fréquence cardiaque</div>
+                <div class="vital-value">
+                  <span class="pulse">___</span>
+                  <span class="vital-unit">bpm</span>
+                </div>
+                <div class="vital-date">Date: ___/___/____</div>
+                <div class="vital-status normal">
+                  <i class="fas fa-check-circle"></i> Normale
+                </div>
+              </div>
+
+              <div class="vital-card">
+                <div class="vital-icon">
+                  <i class="fas fa-thermometer"></i>
+                </div>
+                <div class="vital-title">Température</div>
+                <div class="vital-value">
+                  <span class="temp">___</span>
+                  <span class="vital-unit">°C</span>
+                </div>
+                <div class="vital-date">Date: ___/___/____</div>
+                <div class="vital-status normal">
+                  <i class="fas fa-check-circle"></i> Normale
+                </div>
+              </div>
+
+              <div class="vital-card">
+                <div class="vital-icon">
+                  <i class="fas fa-weight"></i>
+                </div>
+                <div class="vital-title">Poids</div>
+                <div class="vital-value">
+                  <span class="weight">___</span>
+                  <span class="vital-unit">kg</span>
+                </div>
+                <div class="vital-date">Date: ___/___/____</div>
+                <div class="vital-status">
+                  IMC: <span class="imc-value">___</span> kg/m²
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Symptômes actuels -->
+          <div class="form-section">
+            <h3><i class="fas fa-stethoscope"></i> Symptômes actuels</h3>
+            <div class="symptoms-grid">
+              <div class="symptom-category">
+                <h4><i class="fas fa-lungs"></i> Respiratoires</h4>
+                <div class="symptom-list">
+                  <div class="symptom-item">
+                    <span class="checkbox"></span>
+                    <span>Toux</span>
+                    <span class="symptom-duration">Durée: ______</span>
+                  </div>
+                  <div class="symptom-item">
+                    <span class="checkbox"></span>
+                    <span>Essoufflement</span>
+                    <span class="symptom-severity">Sévérité: ___/10</span>
+                  </div>
+                  <div class="symptom-item">
+                    <span class="checkbox"></span>
+                    <span>Douleur thoracique</span>
+                    <span class="symptom-duration">Durée: ______</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="symptom-category">
+                <h4><i class="fas fa-brain"></i> Neurologiques</h4>
+                <div class="symptom-list">
+                  <div class="symptom-item">
+                    <span class="checkbox"></span>
+                    <span>Céphalées</span>
+                    <span class="symptom-severity">Sévérité: ___/10</span>
+                  </div>
+                  <div class="symptom-item">
+                    <span class="checkbox"></span>
+                    <span>Vertiges</span>
+                    <span class="symptom-duration">Durée: ______</span>
+                  </div>
+                  <div class="symptom-item">
+                    <span class="checkbox"></span>
+                    <span>Troubles visuels</span>
+                    <span class="symptom-duration">Durée: ______</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="symptom-category">
+                <h4><i class="fas fa-stomach"></i> Digestifs</h4>
+                <div class="symptom-list">
+                  <div class="symptom-item">
+                    <span class="checkbox"></span>
+                    <span>Nausées/Vomissements</span>
+                    <span class="symptom-duration">Durée: ______</span>
+                  </div>
+                  <div class="symptom-item">
+                    <span class="checkbox"></span>
+                    <span>Douleurs abdominales</span>
+                    <span class="symptom-severity">Sévérité: ___/10</span>
+                  </div>
+                  <div class="symptom-item">
+                    <span class="checkbox"></span>
+                    <span>Diarrhée</span>
+                    <span class="symptom-duration">Durée: ______</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="symptom-category">
+                <h4><i class="fas fa-bone"></i> Musculo-squelettiques</h4>
+                <div class="symptom-list">
+                  <div class="symptom-item">
+                    <span class="checkbox"></span>
+                    <span>Arthralgies</span>
+                    <span class="symptom-severity">Sévérité: ___/10</span>
+                  </div>
+                  <div class="symptom-item">
+                    <span class="checkbox"></span>
+                    <span>Myalgies</span>
+                    <span class="symptom-duration">Durée: ______</span>
+                  </div>
+                  <div class="symptom-item">
+                    <span class="checkbox"></span>
+                    <span>Fatigue</span>
+                    <span class="symptom-severity">Sévérité: ___/10</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="symptom-notes">
+              <div class="notes-label">Description des symptômes :</div>
+              <div class="notes-field">
+                ________________________________________________________<br />
+                ________________________________________________________<br />
+                ________________________________________________________
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Examens récents -->
+          <div class="form-section">
+            <h3>
+              <i class="fas fa-file-medical"></i> Derniers examens paracliniques
+            </h3>
+            <div class="exams-recent">
+              <div class="exam-card">
+                <div class="exam-header">
+                  <i class="fas fa-vial"></i>
+                  <h4>Biologie sanguine</h4>
+                  <span class="exam-date">Date: ___/___/____</span>
+                </div>
+                <div class="exam-results">
+                  <div class="result-item">
+                    <span>Glycémie :</span>
+                    <span class="result-value">______ g/L</span>
+                    <span class="result-status normal">N</span>
+                  </div>
+                  <div class="result-item">
+                    <span>Créatinine :</span>
+                    <span class="result-value">______ µmol/L</span>
+                    <span class="result-status normal">N</span>
+                  </div>
+                  <div class="result-item">
+                    <span>NFS :</span>
+                    <span class="result-value">__________________</span>
+                    <span class="result-status normal">N</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="exam-card">
+                <div class="exam-header">
+                  <i class="fas fa-x-ray"></i>
+                  <h4>Imagerie récente</h4>
+                  <span class="exam-date">Date: ___/___/____</span>
+                </div>
+                <div class="exam-results">
+                  <div class="result-item">
+                    <span>Type :</span>
+                    <span class="result-value">__________________</span>
+                  </div>
+                  <div class="result-item">
+                    <span>Résultat :</span>
+                    <span class="result-value">__________________</span>
+                  </div>
+                  <div class="result-item">
+                    <span>Centre :</span>
+                    <span class="result-value">__________________</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="exam-card">
+                <div class="exam-header">
+                  <i class="fas fa-notes-medical"></i>
+                  <h4>Autres examens</h4>
+                  <span class="exam-date">Date: ___/___/____</span>
+                </div>
+                <div class="exam-results">
+                  <div class="result-item">
+                    <span>Type :</span>
+                    <span class="result-value">__________________</span>
+                  </div>
+                  <div class="result-item">
+                    <span>Résultat :</span>
+                    <span class="result-value">__________________</span>
+                  </div>
+                  <div class="result-item">
+                    <span>Observations :</span>
+                    <span class="result-value">__________________</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Capacité fonctionnelle -->
+          <div class="form-section">
+            <h3><i class="fas fa-running"></i> Capacité fonctionnelle</h3>
+            <div class="functional-capacity">
+              <div class="capacity-scale">
+                <div class="scale-title">Échelle de Karnofsky</div>
+                <div class="scale-options">
+                  <div class="scale-option">
+                    <span class="scale-percent">100%</span>
+                    <span class="scale-desc">Normal, pas de plainte</span>
+                    <span class="checkbox"></span>
+                  </div>
+                  <div class="scale-option">
+                    <span class="scale-percent">80%</span>
+                    <span class="scale-desc">Symptômes, activité normale</span>
+                    <span class="checkbox"></span>
+                  </div>
+                  <div class="scale-option">
+                    <span class="scale-percent">60%</span>
+                    <span class="scale-desc"
+                      >Auto-suffisant, soins occasionnels</span
+                    >
+                    <span class="checkbox"></span>
+                  </div>
+                  <div class="scale-option">
+                    <span class="scale-percent">40%</span>
+                    <span class="scale-desc">Incapable, soins fréquents</span>
+                    <span class="checkbox"></span>
+                  </div>
+                  <div class="scale-option">
+                    <span class="scale-percent">20%</span>
+                    <span class="scale-desc"
+                      >Gravement malade, hospitalisation</span
+                    >
+                    <span class="checkbox"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="activity-level">
+                <h4>
+                  <i class="fas fa-walking"></i> Niveau d'activité physique
+                </h4>
+                <div class="activity-options">
+                  <div class="activity-option">
+                    <span class="activity-icon"
+                      ><i class="fas fa-couch"></i
+                    ></span>
+                    <span>Sédentaire</span>
+                    <span class="checkbox"></span>
+                  </div>
+                  <div class="activity-option">
+                    <span class="activity-icon"
+                      ><i class="fas fa-walking"></i
+                    ></span>
+                    <span>Léger</span>
+                    <span class="checkbox"></span>
+                  </div>
+                  <div class="activity-option">
+                    <span class="activity-icon"
+                      ><i class="fas fa-running"></i
+                    ></span>
+                    <span>Modéré</span>
+                    <span class="checkbox"></span>
+                  </div>
+                  <div class="activity-option">
+                    <span class="activity-icon"
+                      ><i class="fas fa-dumbbell"></i
+                    ></span>
+                    <span>Intense</span>
+                    <span class="checkbox"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Indication de suite -->
+          <div class="page-continuation">
+            <div class="continuation-arrow">
+              <i class="fas fa-arrow-down"></i>
+            </div>
+            <div class="continuation-text">
+              État de santé et évaluation à la page suivante
+            </div>
+          </div>
+        </div>
+
+        <div class="page-footer">
+          <div class="watermark">SANTÉ</div>
+          <div class="page-number">Page 6</div>
+        </div>
+      </div>
+      <nav class="page-actions">
+        <a class="btn" href="sommaire.html">Sommaire</a>
+        <a class="btn" href="page8.html">Suivant</a>
+      </nav>
+    </main>
+  </body>
+</html>
