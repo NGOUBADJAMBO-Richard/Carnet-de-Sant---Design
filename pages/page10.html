@@ -2,24 +2,727 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Page 10 — Carnet de Santé</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page 10 - Traitements (Suite) - Carnet de Santé Gabonais</title>
     <link rel="stylesheet" href="../style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .contraindications-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .contra-card {
+        border-radius: 10px;
+        padding: 20px;
+        border: 2px solid;
+      }
+
+      .contra-card.severe {
+        border-color: #e74c3c;
+        background: #fff5f5;
+      }
+
+      .contra-card.moderate {
+        border-color: #f39c12;
+        background: #fff9e6;
+      }
+
+      .contra-card.info {
+        border-color: #3498db;
+        background: #e8f4fd;
+      }
+
+      .contra-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid currentColor;
+      }
+
+      .contra-card.severe .contra-header {
+        color: #e74c3c;
+      }
+
+      .contra-card.moderate .contra-header {
+        color: #f39c12;
+      }
+
+      .contra-card.info .contra-header {
+        color: #3498db;
+      }
+
+      .contra-header i {
+        font-size: 20px;
+      }
+
+      .contra-header h4 {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .contra-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .contra-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background: white;
+        border-radius: 6px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .med-allergy,
+      .med-intolerance,
+      .med-precau {
+        font-weight: 600;
+        color: #333;
+      }
+
+      .allergy-reaction,
+      .intolerance-effect,
+      .precau-info {
+        font-size: 13px;
+        color: #666;
+        text-align: right;
+      }
+
+      .interactions-detail-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        font-size: 13px;
+      }
+
+      .interactions-detail-table th,
+      .interactions-detail-table td {
+        border: 1px solid var(--border-color);
+        padding: 10px;
+        text-align: center;
+      }
+
+      .interactions-detail-table th {
+        background-color: #e74c3c;
+        color: white;
+        font-weight: 600;
+        font-size: 12px;
+      }
+
+      .self-med-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .self-med-card {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+      }
+
+      .self-med-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #f1f1f1;
+      }
+
+      .self-med-header i {
+        font-size: 24px;
+        color: #27ae60;
+      }
+
+      .self-med-header h4 {
+        margin: 0;
+        color: #333;
+        font-size: 16px;
+      }
+
+      .self-med-content {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .self-med-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background: #f8f9fa;
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+      }
+
+      .self-med-name {
+        flex: 2;
+        font-weight: 500;
+        color: #333;
+      }
+
+      .self-med-dose {
+        flex: 1;
+        color: #666;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .self-med-freq {
+        flex: 2;
+        color: #666;
+        font-size: 13px;
+        text-align: right;
+      }
+
+      .pharmacy-reference {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 25px;
+        margin-top: 15px;
+      }
+
+      .pharmacy-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .pharmacy-detail h4 {
+        color: #9b59b6;
+        margin: 0 0 20px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 12px;
+        padding: 8px;
+        background: white;
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+      }
+
+      .detail-item i {
+        color: #9b59b6;
+        width: 20px;
+      }
+
+      .emergency-contacts h4 {
+        color: #e74c3c;
+        margin: 0 0 20px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .contact-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background: white;
+        border-radius: 8px;
+        border: 2px solid #dee2e6;
+        transition: all 0.3s;
+      }
+
+      .contact-item:hover {
+        border-color: #e74c3c;
+        transform: translateY(-3px);
+      }
+
+      .contact-item i {
+        font-size: 24px;
+        color: #e74c3c;
+      }
+
+      .contact-name {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      .contact-number {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .medication-validation {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 10px;
+        padding: 25px;
+        margin-top: 15px;
+      }
+
+      .validation-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 2px dashed #dee2e6;
+      }
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #f1f1f1;
+      }
+
+      .info-value {
+        color: #333;
+        font-weight: 500;
+      }
+
+      .validation-notes {
+        margin-bottom: 25px;
+      }
+
+      .validation-notes h4 {
+        color: #9b59b6;
+        margin: 0 0 15px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .notes-area {
+        min-height: 100px;
+        line-height: 1.6;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border: 1px solid #dee2e6;
+      }
+
+      .validation-signature {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        padding-top: 20px;
+        border-top: 2px dashed #dee2e6;
+      }
+
+      .signature-box {
+        flex: 1;
+      }
+
+      .signature-label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .signature-line {
+        min-height: 40px;
+        border-bottom: 2px solid #333;
+        margin: 10px 0;
+      }
+
+      .signature-date {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .stamp-box {
+        text-align: center;
+      }
+
+      .stamp-label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .stamp-area {
+        width: 120px;
+        height: 80px;
+        border: 2px dashed #dee2e6;
+        background: white;
+        margin: 10px auto 0;
+      }
+    </style>
   </head>
-  <body class="page">
-    <header class="page-header">
-      <h1>Page 10</h1>
-      <p>Éducation à la santé.</p>
-    </header>
-    <main class="page-content">
-      <section class="card">
-        <h2>Éducation</h2>
-        <p>Prévention des maladies, habitudes saines, activités physiques.</p>
-      </section>
-      <nav class="page-actions">
-        <a class="btn" href="sommaire.html">Sommaire</a>
-        <a class="btn" href="page11.html">Suivant</a>
-      </nav>
-    </main>
+  <body>
+    <div class="container">
+      <!-- PAGE 10 : TRAITEMENTS (SUITE ET CONTRE-INDICATIONS) -->
+      <div class="page" id="page10">
+        <div class="page-header">
+          <div class="section-title">
+            <div class="icon"><i class="fas fa-prescription-bottle"></i></div>
+            <h2>TRAITEMENTS (SUITE ET CONTRE-INDICATIONS)</h2>
+            <div class="section-number">10</div>
+          </div>
+          <div class="header-logos">
+            <span class="logo-small">RG</span>
+            <span class="logo-small">USTS</span>
+          </div>
+        </div>
+
+        <div class="content">
+          <!-- Indication de suite -->
+          <div class="page-continuation previous">
+            <div class="continuation-arrow">
+              <i class="fas fa-arrow-up"></i>
+            </div>
+            <div class="continuation-text">
+              Suite des traitements depuis la page précédente
+            </div>
+          </div>
+
+          <!-- Section 4: Contre-indications et allergies -->
+          <div class="form-section">
+            <h3>
+              <i class="fas fa-ban"></i> Contre-indications médicamenteuses
+            </h3>
+            <div class="contraindications-section">
+              <div class="contra-card severe">
+                <div class="contra-header">
+                  <i class="fas fa-skull-crossbones"></i>
+                  <h4>Allergies graves (anaphylaxie)</h4>
+                </div>
+                <div class="contra-list">
+                  <div class="contra-item">
+                    <span class="med-allergy">Pénicilline</span>
+                    <span class="allergy-reaction"
+                      >Choc anaphylactique (1998)</span
+                    >
+                  </div>
+                  <div class="contra-item">
+                    <span class="med-allergy">__________________</span>
+                    <span class="allergy-reaction">__________________</span>
+                  </div>
+                  <div class="contra-item">
+                    <span class="med-allergy">__________________</span>
+                    <span class="allergy-reaction">__________________</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contra-card moderate">
+                <div class="contra-header">
+                  <i class="fas fa-exclamation-triangle"></i>
+                  <h4>Intolérances médicamenteuses</h4>
+                </div>
+                <div class="contra-list">
+                  <div class="contra-item">
+                    <span class="med-intolerance">AINS</span>
+                    <span class="intolerance-effect">Urtiquaire, œdème</span>
+                  </div>
+                  <div class="contra-item">
+                    <span class="med-intolerance">__________________</span>
+                    <span class="intolerance-effect">__________________</span>
+                  </div>
+                  <div class="contra-item">
+                    <span class="med-intolerance">__________________</span>
+                    <span class="intolerance-effect">__________________</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contra-card info">
+                <div class="contra-header">
+                  <i class="fas fa-info-circle"></i>
+                  <h4>Précautions d'emploi</h4>
+                </div>
+                <div class="contra-list">
+                  <div class="contra-item">
+                    <span class="med-precau">Anticoagulants</span>
+                    <span class="precau-info">Surveillance INR</span>
+                  </div>
+                  <div class="contra-item">
+                    <span class="med-precau">__________________</span>
+                    <span class="precau-info">__________________</span>
+                  </div>
+                  <div class="contra-item">
+                    <span class="med-precau">__________________</span>
+                    <span class="precau-info">__________________</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5: Interactions médicamenteuses -->
+          <div class="form-section">
+            <h3>
+              <i class="fas fa-exchange-alt"></i> Interactions importantes
+            </h3>
+            <div class="interactions-table">
+              <table class="interactions-detail-table">
+                <thead>
+                  <tr>
+                    <th>Médicament A</th>
+                    <th>Médicament B</th>
+                    <th>Interaction</th>
+                    <th>Recommandation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>__________________</td>
+                    <td>__________________</td>
+                    <td>__________________</td>
+                    <td>__________________</td>
+                  </tr>
+                  <tr>
+                    <td>__________________</td>
+                    <td>__________________</td>
+                    <td>__________________</td>
+                    <td>__________________</td>
+                  </tr>
+                  <tr>
+                    <td>__________________</td>
+                    <td>__________________</td>
+                    <td>__________________</td>
+                    <td>__________________</td>
+                  </tr>
+                  <tr>
+                    <td>__________________</td>
+                    <td>__________________</td>
+                    <td>__________________</td>
+                    <td>__________________</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Section 6: Automédication -->
+          <div class="form-section">
+            <h3><i class="fas fa-home"></i> Automédication habituelle</h3>
+            <div class="self-medication">
+              <div class="self-med-cards">
+                <div class="self-med-card">
+                  <div class="self-med-header">
+                    <i class="fas fa-head-side-virus"></i>
+                    <h4>Antalgiques/Antipyrétiques</h4>
+                  </div>
+                  <div class="self-med-content">
+                    <div class="self-med-item">
+                      <span class="self-med-name">Paracétamol</span>
+                      <span class="self-med-dose">500-1000 mg</span>
+                      <span class="self-med-freq">Si douleur/fièvre</span>
+                    </div>
+                    <div class="self-med-item">
+                      <span class="self-med-name">__________________</span>
+                      <span class="self-med-dose">______ mg</span>
+                      <span class="self-med-freq">__________________</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="self-med-card">
+                  <div class="self-med-header">
+                    <i class="fas fa-allergies"></i>
+                    <h4>Traitements symptomatiques</h4>
+                  </div>
+                  <div class="self-med-content">
+                    <div class="self-med-item">
+                      <span class="self-med-name">Antihistaminique</span>
+                      <span class="self-med-dose">______ mg</span>
+                      <span class="self-med-freq">Si allergies</span>
+                    </div>
+                    <div class="self-med-item">
+                      <span class="self-med-name">__________________</span>
+                      <span class="self-med-dose">______ mg</span>
+                      <span class="self-med-freq">__________________</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="self-med-card">
+                  <div class="self-med-header">
+                    <i class="fas fa-capsules"></i>
+                    <h4>Compléments alimentaires</h4>
+                  </div>
+                  <div class="self-med-content">
+                    <div class="self-med-item">
+                      <span class="self-med-name">Vitamine D</span>
+                      <span class="self-med-dose">______ UI</span>
+                      <span class="self-med-freq">Quotidien</span>
+                    </div>
+                    <div class="self-med-item">
+                      <span class="self-med-name">__________________</span>
+                      <span class="self-med-dose">______ mg</span>
+                      <span class="self-med-freq">__________________</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 7: Pharmacies de référence -->
+          <div class="form-section">
+            <h3>
+              <i class="fas fa-clinic-medical"></i> Références pharmaceutiques -
+              Gabon
+            </h3>
+            <div class="pharmacy-reference">
+              <div class="pharmacy-info">
+                <div class="pharmacy-detail">
+                  <h4>
+                    <i class="fas fa-map-marker-alt"></i> Pharmacie habituelle
+                  </h4>
+                  <div class="detail-item">
+                    <i class="fas fa-store"></i>
+                    <span>Nom : ________________________</span>
+                  </div>
+                  <div class="detail-item">
+                    <i class="fas fa-map-pin"></i>
+                    <span>Adresse : ____________________</span>
+                  </div>
+                  <div class="detail-item">
+                    <i class="fas fa-phone"></i>
+                    <span>Téléphone : __________________</span>
+                  </div>
+                </div>
+
+                <div class="pharmacy-detail">
+                  <h4>
+                    <i class="fas fa-star-of-life"></i> Pharmacie de garde
+                  </h4>
+                  <div class="detail-item">
+                    <i class="fas fa-store"></i>
+                    <span>Nom : ________________________</span>
+                  </div>
+                  <div class="detail-item">
+                    <i class="fas fa-map-pin"></i>
+                    <span>Adresse : ____________________</span>
+                  </div>
+                  <div class="detail-item">
+                    <i class="fas fa-phone"></i>
+                    <span>Téléphone : __________________</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="emergency-contacts">
+                <h4>
+                  <i class="fas fa-exclamation-triangle"></i> Contacts d'urgence
+                  médicaments
+                </h4>
+                <div class="contact-list">
+                  <div class="contact-item">
+                    <i class="fas fa-phone-volume"></i>
+                    <div>
+                      <div class="contact-name">Centre Anti-Poison</div>
+                      <div class="contact-number">__________________</div>
+                    </div>
+                  </div>
+                  <div class="contact-item">
+                    <i class="fas fa-ambulance"></i>
+                    <div>
+                      <div class="contact-name">SAMU Gabon</div>
+                      <div class="contact-number">1300</div>
+                    </div>
+                  </div>
+                  <div class="contact-item">
+                    <i class="fas fa-user-md"></i>
+                    <div>
+                      <div class="contact-name">Médecin traitant</div>
+                      <div class="contact-number">__________________</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 8: Notes et validation -->
+          <div class="form-section">
+            <h3>
+              <i class="fas fa-file-signature"></i> Validation des traitements
+            </h3>
+            <div class="medication-validation">
+              <div class="validation-info">
+                <div class="info-row">
+                  <span>Date de dernière révision :</span>
+                  <span class="info-value">___/___/____</span>
+                </div>
+                <div class="info-row">
+                  <span>Prochaine révision :</span>
+                  <span class="info-value">___/___/____</span>
+                </div>
+                <div class="info-row">
+                  <span>Médecin prescripteur :</span>
+                  <span class="info-value">________________________</span>
+                </div>
+                <div class="info-row">
+                  <span>Pharmacien référent :</span>
+                  <span class="info-value">________________________</span>
+                </div>
+              </div>
+
+              <div class="validation-notes">
+                <h4>
+                  <i class="fas fa-sticky-note"></i> Observations importantes
+                </h4>
+                <div class="notes-area">
+                  ________________________________________________________<br />
+                  ________________________________________________________<br />
+                  ________________________________________________________<br />
+                  ________________________________________________________
+                </div>
+              </div>
+
+              <div class="validation-signature">
+                <div class="signature-box">
+                  <div class="signature-label">Signature du médecin :</div>
+                  <div class="signature-line">________________________</div>
+                  <div class="signature-date">Date : ___/___/____</div>
+                </div>
+                <div class="stamp-box">
+                  <div class="stamp-label">Cachet :</div>
+                  <div class="stamp-area"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-footer">
+          <div class="watermark">TRAITEMENTS</div>
+          <div class="page-number">Page 10</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      setTimeout(function () {
+        window.location.href = "../index.html#page10";
+      }, 1000);
+    </script>
   </body>
 </html>

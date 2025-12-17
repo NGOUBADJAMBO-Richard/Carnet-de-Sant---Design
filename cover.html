@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page de Couverture - Carnet de Santé Gabonais</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="page cover" id="cover">
+        <!-- En-tête avec logos -->
+        <div class="cover-header">
+          <div class="logos">
+            <div class="logo-gabon">
+              <div class="flag">
+                <div class="stripe green"></div>
+                <div class="stripe yellow"></div>
+                <div class="stripe blue"></div>
+              </div>
+              <span>République Gabonaise</span>
+            </div>
+            <div class="logo-usts">
+              <div>
+                <!-- Logo USTS - à remplacer par le vrai logo -->
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    color: var(--gabon-blue);
+                    font-size: 14px;
+                  "
+                >
+                  USTS
+                </div>
+              </div>
+              <span>Unité de Suivi et de Traitement Sanitaire</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Titre principal -->
+        <div class="cover-title">
+          <h1>CARNET DE SANTÉ</h1>
+          <h2>POUR ADULTES</h2>
+          <div class="subtitle">Document Officiel de Suivi Médical</div>
+          <div class="edition">Édition Gabon 2024</div>
+        </div>
+
+        <!-- Informations importantes -->
+        <div class="cover-info">
+          <div class="info-box">
+            <i class="fas fa-shield-alt"></i>
+            <p>Document confidentiel protégé par le secret médical</p>
+          </div>
+          <div class="info-box">
+            <i class="fas fa-lock"></i>
+            <p>À conserver précieusement</p>
+          </div>
+          <div class="info-box">
+            <i class="fas fa-qrcode"></i>
+            <p>QR Code vers eGabon-SIS</p>
+          </div>
+        </div>
+
+        <!-- Section QR Code -->
+        <div class="qr-section">
+          <div class="qr-code">
+            <div class="qr-placeholder">
+              <div class="qr-pattern"></div>
+              <div class="qr-text">eGabon-SIS</div>
+            </div>
+          </div>
+          <div class="ministere">
+            Ministère de la Santé et de la Protection Sociale<br />
+            République Gabonaise
+          </div>
+        </div>
+
+        <!-- Pied de page -->
+        <div class="cover-footer">
+          <div class="colors">
+            <div class="color-dot green"></div>
+            <div class="color-dot yellow"></div>
+            <div class="color-dot blue"></div>
+          </div>
+          <p>Palette aux couleurs nationales du Gabon</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Redirection vers l'index principal
+      setTimeout(function () {
+        window.location.href = "index.html";
+      }, 3000);
+    </script>
+  </body>
+</html>

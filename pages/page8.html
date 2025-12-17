@@ -2,24 +2,777 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Page 8 — Carnet de Santé</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Page 8 - État de Santé (Évaluation) - Carnet de Santé Gabonais
+    </title>
     <link rel="stylesheet" href="../style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .nutrition-assessment {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+      }
+
+      .nutrition-card {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+      }
+
+      .nutrition-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #f1f1f1;
+      }
+
+      .nutrition-header i {
+        font-size: 24px;
+        color: #27ae60;
+      }
+
+      .nutrition-header h4 {
+        margin: 0;
+        color: #333;
+      }
+
+      .nutrition-data,
+      .hydration-data {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .data-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px dashed #dee2e6;
+      }
+
+      .data-value {
+        color: #333;
+        font-weight: 500;
+      }
+
+      .data-status {
+        font-size: 12px;
+      }
+
+      .imc-category {
+        padding: 5px 10px;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        background: white;
+        font-size: 12px;
+      }
+
+      .nutrition-habits {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      .habit-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .hydration-advice {
+        margin-top: 15px;
+        padding: 10px;
+        background: #e8f4fd;
+        border-radius: 6px;
+        border: 1px solid #3498db;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: #2c3e50;
+      }
+
+      .psycho-assessment {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+      }
+
+      .psycho-card {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+      }
+
+      .psycho-card h4 {
+        color: #9b59b6;
+        margin: 0 0 20px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f1f1f1;
+      }
+
+      .sleep-quality,
+      .mood-assessment,
+      .social-support {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .sleep-option {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .sleep-select {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        background: white;
+      }
+
+      .sleep-value {
+        color: #333;
+        font-weight: 500;
+      }
+
+      .mood-scale {
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+      }
+
+      .mood-option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+      }
+
+      .scale-points {
+        display: flex;
+        gap: 10px;
+      }
+
+      .scale-points .checkbox {
+        width: 15px;
+        height: 15px;
+        border: 2px solid #9b59b6;
+        border-radius: 50%;
+      }
+
+      .support-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px;
+        background: #f8f9fa;
+        border-radius: 6px;
+        margin-bottom: 8px;
+      }
+
+      .risk-assessment {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+      }
+
+      .risk-card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+      }
+
+      .risk-card.high {
+        border: 2px solid #e74c3c;
+        background: #fff5f5;
+      }
+
+      .risk-card.moderate {
+        border: 2px solid #f39c12;
+        background: #fff9e6;
+      }
+
+      .risk-card.prevention {
+        border: 2px solid #2ecc71;
+        background: #f0fff4;
+      }
+
+      .risk-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid currentColor;
+      }
+
+      .risk-card.high .risk-header {
+        color: #e74c3c;
+      }
+
+      .risk-card.moderate .risk-header {
+        color: #f39c12;
+      }
+
+      .risk-card.prevention .risk-header {
+        color: #2ecc71;
+      }
+
+      .risk-header i {
+        font-size: 20px;
+      }
+
+      .risk-header h4 {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .risk-list,
+      .prevention-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .risk-item,
+      .prevention-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px;
+        background: white;
+        border-radius: 6px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .care-plan {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 25px;
+        margin-top: 15px;
+      }
+
+      .plan-section {
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 2px dashed #dee2e6;
+      }
+
+      .plan-section:last-child {
+        border-bottom: none;
+      }
+
+      .plan-section h4 {
+        color: #3498db;
+        margin: 0 0 15px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .diagnosis-list,
+      .objectives-list,
+      .follow-up-schedule {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .diagnosis-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        background: white;
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+      }
+
+      .objective-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 10px;
+        background: white;
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+      }
+
+      .schedule-item {
+        display: grid;
+        grid-template-columns: 150px 1fr auto;
+        gap: 15px;
+        align-items: center;
+        padding: 10px 15px;
+        background: white;
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+      }
+
+      .schedule-date {
+        color: #3498db;
+        font-weight: 500;
+      }
+
+      .plan-signature {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 2px solid #dee2e6;
+      }
+
+      .signature-box {
+        flex: 1;
+      }
+
+      .doctor-signature {
+        min-height: 50px;
+        border-bottom: 2px solid #333;
+        margin: 15px 0;
+      }
+
+      .doctor-info {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .stamp-box {
+        text-align: center;
+      }
+
+      .stamp-placeholder {
+        width: 120px;
+        height: 80px;
+        border: 2px dashed #dee2e6;
+        background: white;
+        margin-top: 10px;
+      }
+
+      @media (max-width: 768px) {
+        .nutrition-assessment,
+        .psycho-assessment,
+        .risk-assessment {
+          grid-template-columns: 1fr;
+        }
+
+        .schedule-item {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+
+        .plan-signature {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+    </style>
   </head>
-  <body class="page">
-    <header class="page-header">
-      <h1>Page 8</h1>
-      <p>Alimentation et nutrition.</p>
-    </header>
-    <main class="page-content">
-      <section class="card">
-        <h2>Conseils nutrition</h2>
-        <p>Allaitement, diversification, apports recommandés par âge.</p>
-      </section>
-      <nav class="page-actions">
-        <a class="btn" href="sommaire.html">Sommaire</a>
-        <a class="btn" href="page9.html">Suivant</a>
-      </nav>
-    </main>
+  <body>
+    <div class="container">
+      <!-- PAGE 8 : ÉTAT DE SANTÉ (ÉVALUATION) -->
+      <div class="page" id="page8">
+        <div class="page-header">
+          <div class="section-title">
+            <div class="icon"><i class="fas fa-heartbeat"></i></div>
+            <h2>ÉTAT DE SANTÉ (ÉVALUATION)</h2>
+            <div class="section-number">08</div>
+          </div>
+          <div class="header-logos">
+            <span class="logo-small">RG</span>
+            <span class="logo-small">USTS</span>
+          </div>
+        </div>
+
+        <div class="content">
+          <!-- Indication de suite -->
+          <div class="page-continuation previous">
+            <div class="continuation-arrow">
+              <i class="fas fa-arrow-up"></i>
+            </div>
+            <div class="continuation-text">
+              Suite de l'état de santé depuis la page précédente
+            </div>
+          </div>
+
+          <!-- Section 5: Évaluation nutritionnelle -->
+          <div class="form-section">
+            <h3><i class="fas fa-utensils"></i> État nutritionnel</h3>
+            <div class="nutrition-assessment">
+              <div class="nutrition-card">
+                <div class="nutrition-header">
+                  <i class="fas fa-weight"></i>
+                  <h4>Paramètres anthropométriques</h4>
+                </div>
+                <div class="nutrition-data">
+                  <div class="data-row">
+                    <span>Poids actuel :</span>
+                    <span class="data-value">______ kg</span>
+                  </div>
+                  <div class="data-row">
+                    <span>Taille :</span>
+                    <span class="data-value">______ cm</span>
+                  </div>
+                  <div class="data-row">
+                    <span>IMC :</span>
+                    <span class="data-value">______ kg/m²</span>
+                    <span class="data-status">
+                      <select class="imc-category">
+                        <option>Insuffisance pondérale</option>
+                        <option>Normal</option>
+                        <option>Surpoids</option>
+                        <option>Obésité</option>
+                      </select>
+                    </span>
+                  </div>
+                  <div class="data-row">
+                    <span>Tour de taille :</span>
+                    <span class="data-value">______ cm</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="nutrition-card">
+                <div class="nutrition-header">
+                  <i class="fas fa-apple-alt"></i>
+                  <h4>Habitudes alimentaires</h4>
+                </div>
+                <div class="nutrition-habits">
+                  <div class="habit-item">
+                    <span class="checkbox"></span>
+                    <span>Appétit conservé</span>
+                  </div>
+                  <div class="habit-item">
+                    <span class="checkbox"></span>
+                    <span>Perte d'appétit récente</span>
+                  </div>
+                  <div class="habit-item">
+                    <span class="checkbox"></span>
+                    <span>Régime spécifique</span>
+                  </div>
+                  <div class="habit-item">
+                    <span class="checkbox"></span>
+                    <span>Difficultés à s'alimenter</span>
+                  </div>
+                </div>
+                <div class="nutrition-notes">
+                  <div>Observations :</div>
+                  <div class="notes-field">_____________________________</div>
+                </div>
+              </div>
+
+              <div class="nutrition-card">
+                <div class="nutrition-header">
+                  <i class="fas fa-tint"></i>
+                  <h4>Hydratation</h4>
+                </div>
+                <div class="hydration-data">
+                  <div class="data-row">
+                    <span>Quantité d'eau/jour :</span>
+                    <span class="data-value">______ L</span>
+                  </div>
+                  <div class="data-row">
+                    <span>Signes de déshydratation :</span>
+                    <span class="data-options">
+                      <span class="checkbox"></span> Non
+                      <span class="checkbox"></span> Oui
+                    </span>
+                  </div>
+                  <div class="hydration-advice">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Conseil climat Gabon: 2L d'eau minimum/jour</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 6: Évaluation psychosociale -->
+          <div class="form-section">
+            <h3><i class="fas fa-brain"></i> État psychosocial</h3>
+            <div class="psycho-assessment">
+              <div class="psycho-card">
+                <h4><i class="fas fa-bed"></i> Sommeil</h4>
+                <div class="sleep-quality">
+                  <div class="sleep-option">
+                    <span>Qualité :</span>
+                    <select class="sleep-select">
+                      <option>Bonne</option>
+                      <option>Moyenne</option>
+                      <option>Mauvaise</option>
+                      <option>Insomnie</option>
+                    </select>
+                  </div>
+                  <div class="sleep-option">
+                    <span>Durée :</span>
+                    <span class="sleep-value">______ heures/nuit</span>
+                  </div>
+                  <div class="sleep-notes">
+                    <div>Problèmes de sommeil :</div>
+                    <div class="notes-field">_____________________________</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="psycho-card">
+                <h4><i class="fas fa-smile"></i> Humeur</h4>
+                <div class="mood-assessment">
+                  <div class="mood-scale">
+                    <div class="mood-option">
+                      <span>Déprimé</span>
+                      <div class="scale-points">
+                        <span class="checkbox"></span>
+                        <span class="checkbox"></span>
+                        <span class="checkbox"></span>
+                        <span class="checkbox"></span>
+                        <span class="checkbox"></span>
+                      </div>
+                      <span>Heureux</span>
+                    </div>
+                  </div>
+                  <div class="mood-notes">
+                    <div>Éléments stressants :</div>
+                    <div class="notes-field">_____________________________</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="psycho-card">
+                <h4><i class="fas fa-users"></i> Support social</h4>
+                <div class="social-support">
+                  <div class="support-item">
+                    <span class="checkbox"></span>
+                    <span>Vie en famille</span>
+                  </div>
+                  <div class="support-item">
+                    <span class="checkbox"></span>
+                    <span>Vie seul(e)</span>
+                  </div>
+                  <div class="support-item">
+                    <span class="checkbox"></span>
+                    <span>Aide à domicile</span>
+                  </div>
+                  <div class="support-item">
+                    <span class="checkbox"></span>
+                    <span>Activités sociales</span>
+                  </div>
+                  <div class="support-notes">
+                    <div>Observations :</div>
+                    <div class="notes-field">_____________________________</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 7: Risques et prévention -->
+          <div class="form-section">
+            <h3><i class="fas fa-shield-alt"></i> Évaluation des risques</h3>
+            <div class="risk-assessment">
+              <div class="risk-card high">
+                <div class="risk-header">
+                  <i class="fas fa-exclamation-triangle"></i>
+                  <h4>Risques élevés</h4>
+                </div>
+                <div class="risk-list">
+                  <div class="risk-item">
+                    <span class="checkbox"></span>
+                    <span>Chutes (personnes âgées)</span>
+                  </div>
+                  <div class="risk-item">
+                    <span class="checkbox"></span>
+                    <span>Escarres (alitement)</span>
+                  </div>
+                  <div class="risk-item">
+                    <span class="checkbox"></span>
+                    <span>Dénutrition</span>
+                  </div>
+                  <div class="risk-item">
+                    <span class="checkbox"></span>
+                    <span>Déshydratation</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="risk-card moderate">
+                <div class="risk-header">
+                  <i class="fas fa-exclamation-circle"></i>
+                  <h4>Risques modérés</h4>
+                </div>
+                <div class="risk-list">
+                  <div class="risk-item">
+                    <span class="checkbox"></span>
+                    <span>Infections nosocomiales</span>
+                  </div>
+                  <div class="risk-item">
+                    <span class="checkbox"></span>
+                    <span>Complications thromboemboliques</span>
+                  </div>
+                  <div class="risk-item">
+                    <span class="checkbox"></span>
+                    <span>Dépendance médicamenteuse</span>
+                  </div>
+                  <div class="risk-item">
+                    <span class="checkbox"></span>
+                    <span>Dépression réactionnelle</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="risk-card prevention">
+                <div class="risk-header">
+                  <i class="fas fa-shield-virus"></i>
+                  <h4>Mesures préventives</h4>
+                </div>
+                <div class="prevention-list">
+                  <div class="prevention-item">
+                    <span class="checkbox"></span>
+                    <span>Vaccination à jour</span>
+                  </div>
+                  <div class="prevention-item">
+                    <span class="checkbox"></span>
+                    <span>Dépistage cancer</span>
+                  </div>
+                  <div class="prevention-item">
+                    <span class="checkbox"></span>
+                    <span>Contrôle tensionnel</span>
+                  </div>
+                  <div class="prevention-item">
+                    <span class="checkbox"></span>
+                    <span>Bilan dentaire annuel</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 8: Synthèse et plan de soins -->
+          <div class="form-section">
+            <h3>
+              <i class="fas fa-clipboard-check"></i> Synthèse et plan de soins
+            </h3>
+            <div class="care-plan">
+              <div class="plan-section">
+                <h4>
+                  <i class="fas fa-stethoscope"></i> Diagnostic(s) actuel(s)
+                </h4>
+                <div class="diagnosis-list">
+                  <div class="diagnosis-item">
+                    <span>1. _____________________________________</span>
+                    <span>Date: ___/___/____</span>
+                  </div>
+                  <div class="diagnosis-item">
+                    <span>2. _____________________________________</span>
+                    <span>Date: ___/___/____</span>
+                  </div>
+                  <div class="diagnosis-item">
+                    <span>3. _____________________________________</span>
+                    <span>Date: ___/___/____</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="plan-section">
+                <h4>
+                  <i class="fas fa-bullseye"></i> Objectifs thérapeutiques
+                </h4>
+                <div class="objectives-list">
+                  <div class="objective-item">
+                    <span class="checkbox"></span>
+                    <span>Contrôle tensionnel <140/90 mmHg</span>
+                  </div>
+                  <div class="objective-item">
+                    <span class="checkbox"></span>
+                    <span>Glycémie à jeun <1.26 g/L</span>
+                  </div>
+                  <div class="objective-item">
+                    <span class="checkbox"></span>
+                    <span>Perte de poids 5-10%</span>
+                  </div>
+                  <div class="objective-item">
+                    <span class="checkbox"></span>
+                    <span>Arrêt du tabac</span>
+                  </div>
+                  <div class="objective-item">
+                    <span class="checkbox"></span>
+                    <span>Activité physique 30 min/jour</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="plan-section">
+                <h4><i class="fas fa-calendar-check"></i> Suivi programmé</h4>
+                <div class="follow-up-schedule">
+                  <div class="schedule-item">
+                    <span>Prochaine consultation :</span>
+                    <span class="schedule-date">___/___/____</span>
+                    <span class="schedule-doctor">__________________</span>
+                  </div>
+                  <div class="schedule-item">
+                    <span>Examens à programmer :</span>
+                    <span class="schedule-exam">__________________</span>
+                    <span class="schedule-deadline">Avant ___/___/____</span>
+                  </div>
+                  <div class="schedule-item">
+                    <span>Bilan annuel :</span>
+                    <span class="schedule-date">___/___/____</span>
+                    <span class="schedule-notes">__________________</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="plan-signature">
+                <div class="signature-box">
+                  <div>Établi par :</div>
+                  <div class="doctor-signature">________________________</div>
+                  <div class="doctor-info">
+                    <span>Médecin : ________________________</span>
+                    <span>Date : ___/___/____</span>
+                  </div>
+                </div>
+                <div class="stamp-box">
+                  <div>Cachet :</div>
+                  <div class="stamp-placeholder"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-footer">
+          <div class="watermark">ÉVALUATION</div>
+          <div class="page-number">Page 8</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      setTimeout(function () {
+        window.location.href = "../index.html#page8";
+      }, 1000);
+    </script>
   </body>
 </html>

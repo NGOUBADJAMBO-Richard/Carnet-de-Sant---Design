@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table des Matières - Carnet de Santé Gabonais</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .sommaire-container {
+        padding: 40px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .sommaire-header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 3px solid var(--gabon-green);
+      }
+
+      .sommaire-header h1 {
+        color: var(--gabon-green);
+        margin-bottom: 10px;
+      }
+
+      .sommaire-header .subtitle {
+        color: var(--gabon-blue);
+        font-weight: 600;
+      }
+
+      .sommaire-section {
+        margin-bottom: 30px;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--gabon-green-light);
+      }
+
+      .section-title i {
+        color: var(--gabon-green);
+        font-size: 24px;
+      }
+
+      .section-title h2 {
+        color: var(--gabon-green);
+        margin: 0;
+      }
+
+      .pages-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .page-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 12px 20px;
+        background: var(--white);
+        border-left: 4px solid var(--gabon-blue);
+        border-radius: 0 8px 8px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .page-item:hover {
+        transform: translateX(10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-left-color: var(--gabon-green);
+      }
+
+      .page-number {
+        background: var(--gabon-blue);
+        color: var(--white);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .page-info {
+        flex: 1;
+      }
+
+      .page-title {
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 5px;
+      }
+
+      .page-description {
+        font-size: 13px;
+        color: var(--text-light);
+      }
+
+      .page-icon {
+        color: var(--gabon-green);
+        font-size: 20px;
+      }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 25px;
+        background: var(--gabon-green);
+        color: var(--white);
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: 600;
+        margin-top: 30px;
+        transition: all 0.3s;
+      }
+
+      .back-button:hover {
+        background: var(--gabon-blue);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .sommaire-footer {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--border-color);
+        color: var(--text-light);
+        font-size: 14px;
+      }
+
+      @media print {
+        .back-button {
+          display: none;
+        }
+
+        .page-item {
+          break-inside: avoid;
+          box-shadow: none;
+          border: 1px solid var(--border-color);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sommaire-container">
+        <!-- En-tête -->
+        <div class="sommaire-header">
+          <h1>CARNET DE SANTÉ POUR ADULTES</h1>
+          <div class="subtitle">Table des Matières Complète</div>
+          <div>Édition Gabon 2024 - USTS</div>
+        </div>
+
+        <!-- Section 1: Identification -->
+        <div class="sommaire-section">
+          <div class="section-title">
+            <i class="fas fa-id-card"></i>
+            <h2>IDENTIFICATION ET CONTACT</h2>
+          </div>
+          <div class="pages-list">
+            <div class="page-item" onclick="goToPage('cover')">
+              <div class="page-number">00</div>
+              <div class="page-info">
+                <div class="page-title">Page de Couverture</div>
+                <div class="page-description">
+                  Document officiel avec QR code eGabon-SIS
+                </div>
+              </div>
+              <div class="page-icon"><i class="fas fa-home"></i></div>
+            </div>
+
+            <div class="page-item" onclick="goToPage('page1')">
+              <div class="page-number">01</div>
+              <div class="page-info">
+                <div class="page-title">Identification du Patient</div>
+                <div class="page-description">
+                  Informations personnelles, contacts d'urgence, médecin
+                  traitant
+                </div>
+              </div>
+              <div class="page-icon"><i class="fas fa-user-circle"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Vaccinations -->
+        <div class="sommaire-section">
+          <div class="section-title">
+            <i class="fas fa-syringe"></i>
+            <h2>VACCINATIONS</h2>
+          </div>
+          <div class="pages-list">
+            <div class="page-item" onclick="goToPage('page2')">
+              <div class="page-number">02</div>
+              <div class="page-info">
+                <div class="page-title">Vaccinations - Contexte Gabonais</div>
+                <div class="page-description">
+                  Tableau de suivi vaccinal obligatoire et recommandé
+                </div>
+              </div>
+              <div class="page-icon"><i class="fas fa-syringe"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Antécédents Médicaux -->
+        <div class="sommaire-section">
+          <div class="section-title">
+            <i class="fas fa-history"></i>
+            <h2>ANTÉCÉDENTS MÉDICAUX</h2>
+          </div>
+          <div class="pages-list">
+            <div class="page-item" onclick="goToPage('page3')">
+              <div class="page-number">03</div>
+              <div class="page-info">
+                <div class="page-title">
+                  Antécédents Personnels et Familiaux
+                </div>
+                <div class="page-description">
+                  Maladies chroniques, allergies, chirurgies, antécédents
+                  familiaux
+                </div>
+              </div>
+              <div class="page-icon"><i class="fas fa-user-injured"></i></div>
+            </div>
+
+            <div class="page-item" onclick="goToPage('page4')">
+              <div class="page-number">04</div>
+              <div class="page-info">
+                <div class="page-title">
+                  Antécédents Spécifiques et Validation
+                </div>
+                <div class="page-description">
+                  Dentaires, ophtalmologiques, psychologiques, validation
+                  médicale
+                </div>
+              </div>
+              <div class="page-icon"><i class="fas fa-history"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Suivi Médical -->
+        <div class="sommaire-section">
+          <div class="section-title">
+            <i class="fas fa-stethoscope"></i>
+            <h2>SUIVI MÉDICAL</h2>
+          </div>
+          <div class="pages-list">
+            <div class="page-item" onclick="goToPage('page5')">
+              <div class="page-number">05</div>
+              <div class="page-info">
+                <div class="page-title">
+                  Consultations et Examens Biologiques
+                </div>
+                <div class="page-description">
+                  Tableau des consultations, rendez-vous à venir, examens
+                  biologiques
+                </div>
+              </div>
+              <div class="page-icon"><i class="fas fa-calendar-check"></i></div>
+            </div>
+
+            <div class="page-item" onclick="goToPage('page6')">
+              <div class="page-number">06</div>
+              <div class="page-info">
+                <div class="page-title">Examens d'Imagerie et Suivi</div>
+                <div class="page-description">
+                  Imagerie médicale, bilan annuel, évolution du poids, suivi
+                  tensionnel
+                </div>
+              </div>
+              <div class="page-icon"><i class="fas fa-x-ray"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 5: État de Santé -->
+        <div class="sommaire-section">
+          <div class="section-title">
+            <i class="fas fa-heartbeat"></i>
+            <h2>ÉTAT DE SANTÉ ACTUEL</h2>
+          </div>
+          <div class="pages-list">
+            <div class="page-item" onclick="goToPage('page7')">
+              <div class="page-number">07</div>
+              <div class="page-info">
+                <div class="page-title">Signes Vitaux et Symptômes</div>
+                <div class="page-description">
+                  Dernières mesures, symptômes actuels, examens récents
+                </div>
+              </div>
+              <div class="page-icon"><i class="fas fa-heart"></i></div>
+            </div>
+
+            <div class="page-item" onclick="goToPage('page8')">
+              <div class="page-number">08</div>
+              <div class="page-info">
+                <div class="page-title">Évaluation et Plan de Soins</div>
+                <div class="page-description">
+                  Nutrition, état psychosocial, risques, diagnostic, plan
+                  thérapeutique
+                </div>
+              </div>
+              <div class="page-icon">
+                <i class="fas fa-clipboard-check"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 6: Traitements -->
+        <div class="sommaire-section">
+          <div class="section-title">
+            <i class="fas fa-pills"></i>
+            <h2>TRAITEMENTS ET MÉDICAMENTS</h2>
+          </div>
+          <div class="pages-list">
+            <div class="page-item" onclick="goToPage('page9')">
+              <div class="page-number">09</div>
+              <div class="page-info">
+                <div class="page-title">Traitements en Cours et Calendrier</div>
+                <div class="page-description">
+                  Prescriptions détaillées, calendrier des prises, suivi
+                </div>
+              </div>
+              <div class="page-icon">
+                <i class="fas fa-prescription-bottle-alt"></i>
+              </div>
+            </div>
+
+            <div class="page-item" onclick="goToPage('page10')">
+              <div class="page-number">10</div>
+              <div class="page-info">
+                <div class="page-title">Contre-indications et Pharmacies</div>
+                <div class="page-description">
+                  Allergies, interactions, automédication, pharmacies de
+                  référence
+                </div>
+              </div>
+              <div class="page-icon"><i class="fas fa-ban"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 7: Étiquette Médicale -->
+        <div class="sommaire-section">
+          <div class="section-title">
+            <i class="fas fa-tag"></i>
+            <h2>ÉTIQUETTE MÉDICALE ET INFORMATIONS</h2>
+          </div>
+          <div class="pages-list">
+            <div class="page-item" onclick="goToPage('page11')">
+              <div class="page-number">11</div>
+              <div class="page-info">
+                <div class="page-title">Identification Rapide et Contacts</div>
+                <div class="page-description">
+                  Fiche d'urgence, contacts, système de codage couleur
+                </div>
+              </div>
+              <div class="page-icon"><i class="fas fa-info-circle"></i></div>
+            </div>
+
+            <div class="page-item" onclick="goToPage('page12')">
+              <div class="page-number">12</div>
+              <div class="page-info">
+                <div class="page-title">Guide et Validation</div>
+                <div class="page-description">
+                  Pictogrammes, étiquettes d'alerte, mode d'emploi, validation
+                  officielle
+                </div>
+              </div>
+              <div class="page-icon"><i class="fas fa-stamp"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bouton retour -->
+        <div style="text-align: center">
+          <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Retour au Carnet
+          </a>
+        </div>
+
+        <!-- Pied de page -->
+        <div class="sommaire-footer">
+          <p>Carnet de Santé pour Adultes - Édition Gabon 2024</p>
+          <p>
+            Ministère de la Santé et de la Protection Sociale - République
+            Gabonaise
+          </p>
+          <p>USTS - Unité de Suivi et de Traitement Sanitaire</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function goToPage(pageId) {
+        // Enregistrer la page cible et rediriger vers l'index
+        localStorage.setItem("targetPage", pageId);
+        window.location.href = "index.html#" + pageId;
+      }
+
+      // Vérifier si une redirection est nécessaire
+      if (localStorage.getItem("targetPage")) {
+        const target = localStorage.getItem("targetPage");
+        localStorage.removeItem("targetPage");
+        goToPage(target);
+      }
+    </script>
+  </body>
+</html>

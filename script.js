@@ -1,3 +1,5 @@
+// script.js - Navigation et interactions pour le carnet de santé
+
 document.addEventListener("DOMContentLoaded", function () {
   // Configuration des pages
   const pages = [
@@ -20,203 +22,323 @@ document.addEventListener("DOMContentLoaded", function () {
   const totalPages = pages.length;
 
   // Éléments DOM
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
   const currentPageSpan = document.getElementById("currentPage");
   const totalPagesSpan = document.getElementById("totalPages");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
   const menuBtns = document.querySelectorAll(".menu-btn");
 
   // Initialisation
-  if (totalPagesSpan) {
-    totalPagesSpan.textContent = totalPages - 1; // -1 car la couverture est page 0
-  }
-  showPage(currentPageIndex);
-
-  // Navigation précédent/suivant
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-      if (currentPageIndex > 0) {
-        currentPageIndex--;
-        showPage(currentPageIndex);
-      }
-    });
+  function init() {
+    totalPagesSpan.textContent = totalPages;
+    updateNavigation();
+    showPage(pages[currentPageIndex]);
+    setupEventListeners();
   }
 
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      if (currentPageIndex < totalPages - 1) {
-        currentPageIndex++;
-        showPage(currentPageIndex);
+  // Configuration des événements
+  function setupEventListeners() {
+    // Boutons précédent/suivant
+    prevBtn.addEventListener("click", goToPreviousPage);
+    nextBtn.addEventListener("click", goToNextPage);
+
+    // Navigation clavier
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        goToPreviousPage();
+      } else if (event.key === "ArrowRight" || event.key === "PageDown") {
+        goToNextPage();
       }
+    });
+
+    // Menu rapide
+    menuBtns.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const targetPage = this.getAttribute("data-page");
+        goToPage(targetPage);
+      });
+    });
+
+    // Simulation de cases à cocher
+    document
+      .querySelectorAll(".check-box, .checkbox, .radio")
+      .forEach((box) => {
+        box.addEventListener("click", function () {
+          this.classList.toggle("checked");
+          if (this.classList.contains("radio")) {
+            // Désélectionner les autres boutons radio du même groupe
+            const radioGroup = this.closest(".radio-group");
+            if (radioGroup) {
+              radioGroup.querySelectorAll(".radio").forEach((radio) => {
+                radio.classList.remove("checked");
+              });
+              this.classList.add("checked");
+            }
+          }
+        });
+      });
+
+    // Simulation des QRs codes cliquables
+    document.querySelectorAll(".qr-pattern, .qr-placeholder").forEach((qr) => {
+      qr.addEventListener("click", function () {
+        alert(
+          "QR Code - Accès au portail eGabon-SIS\n\nCe code permettra d'accéder au dossier médical numérique une fois le système déployé."
+        );
+      });
     });
   }
 
-  // Menu rapide
-  menuBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const pageId = btn.getAttribute("data-page");
-      const index = pages.indexOf(pageId);
-      if (index !== -1) {
-        currentPageIndex = index;
-        showPage(currentPageIndex);
+  // Navigation entre pages
+  function showPage(pageId) {
+    // Cacher toutes les pages
+    pages.forEach((page) => {
+      const element = document.getElementById(page);
+      if (element) {
+        element.style.display = "none";
       }
     });
-  });
 
-  // Navigation au clavier
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft" || e.key === "PageUp") {
-      if (currentPageIndex > 0) {
-        currentPageIndex--;
-        showPage(currentPageIndex);
-      }
-    } else if (
-      e.key === "ArrowRight" ||
-      e.key === "PageDown" ||
-      e.key === " "
-    ) {
-      if (currentPageIndex < totalPages - 1) {
-        currentPageIndex++;
-        showPage(currentPageIndex);
-      }
-    } else if (e.key === "Home") {
-      currentPageIndex = 0;
-      showPage(currentPageIndex);
-    } else if (e.key === "End") {
-      currentPageIndex = totalPages - 1;
-      showPage(currentPageIndex);
-    }
-  });
-
-  // Fonction pour afficher une page
-  function showPage(index) {
-    // Masquer toutes les pages
-    document.querySelectorAll(".page").forEach((page) => {
-      page.classList.remove("active");
-    });
-
-    // Afficher la page courante
-    const currentPage = document.getElementById(pages[index]);
-    if (currentPage) {
-      currentPage.classList.add("active");
+    // Afficher la page active
+    const activePage = document.getElementById(pageId);
+    if (activePage) {
+      activePage.style.display = "block";
+      activePage.scrollIntoView({ behavior: "smooth" });
 
       // Mettre à jour l'indicateur de page
-      if (currentPageSpan) {
-        if (index === 0) {
-          currentPageSpan.textContent = "Couverture";
-        } else {
-          currentPageSpan.textContent = index;
+      currentPageIndex = pages.indexOf(pageId);
+      currentPageSpan.textContent = currentPageIndex + 1;
+      updateNavigation();
+
+      // Mettre à jour l'URL (sans rechargement)
+      history.pushState(null, "", `#${pageId}`);
+
+      // Mettre en surbrillance le bouton du menu correspondant
+      updateActiveMenuButton(pageId);
+    }
+  }
+
+  function goToPreviousPage() {
+    if (currentPageIndex > 0) {
+      currentPageIndex--;
+      showPage(pages[currentPageIndex]);
+    }
+  }
+
+  function goToNextPage() {
+    if (currentPageIndex < totalPages - 1) {
+      currentPageIndex++;
+      showPage(pages[currentPageIndex]);
+    }
+  }
+
+  function goToPage(pageId) {
+    const index = pages.indexOf(pageId);
+    if (index !== -1) {
+      currentPageIndex = index;
+      showPage(pageId);
+    }
+  }
+
+  function updateNavigation() {
+    // Activer/désactiver les boutons selon la position
+    prevBtn.disabled = currentPageIndex === 0;
+    nextBtn.disabled = currentPageIndex === totalPages - 1;
+
+    // Changer le style des boutons désactivés
+    prevBtn.style.opacity = prevBtn.disabled ? "0.5" : "1";
+    prevBtn.style.cursor = prevBtn.disabled ? "not-allowed" : "pointer";
+
+    nextBtn.style.opacity = nextBtn.disabled ? "0.5" : "1";
+    nextBtn.style.cursor = nextBtn.disabled ? "not-allowed" : "pointer";
+  }
+
+  function updateActiveMenuButton(pageId) {
+    menuBtns.forEach((btn) => {
+      if (btn.getAttribute("data-page") === pageId) {
+        btn.style.backgroundColor = "var(--gabon-green)";
+        btn.style.color = "var(--white)";
+        btn.style.transform = "translateX(-8px)";
+      } else {
+        btn.style.backgroundColor = "";
+        btn.style.color = "";
+        btn.style.transform = "";
+      }
+    });
+  }
+
+  // Fonction d'impression
+  function setupPrint() {
+    const printBtn = document.createElement("button");
+    printBtn.innerHTML = '<i class="fas fa-print"></i> Imprimer';
+    printBtn.className = "print-btn";
+    printBtn.style.cssText = `
+          position: fixed;
+          bottom: 20px;
+          left: 20px;
+          background: var(--gabon-blue);
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 25px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-weight: 600;
+          z-index: 1001;
+          box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      `;
+
+    printBtn.addEventListener("click", function () {
+      // Afficher toutes les pages pour l'impression
+      pages.forEach((page) => {
+        const element = document.getElementById(page);
+        if (element) {
+          element.style.display = "block";
+        }
+      });
+
+      // Masquer les éléments de navigation
+      document.querySelector(".navigation").style.display = "none";
+      document.querySelector(".quick-menu").style.display = "none";
+      printBtn.style.display = "none";
+
+      // Lancer l'impression
+      window.print();
+
+      // Restaurer après impression
+      setTimeout(() => {
+        showPage(pages[currentPageIndex]);
+        document.querySelector(".navigation").style.display = "flex";
+        document.querySelector(".quick-menu").style.display = "flex";
+        printBtn.style.display = "flex";
+      }, 100);
+    });
+
+    document.body.appendChild(printBtn);
+  }
+
+  // Gestion de l'historique du navigateur
+  window.addEventListener("popstate", function () {
+    const hash = window.location.hash.substring(1);
+    if (hash && pages.includes(hash)) {
+      goToPage(hash);
+    }
+  });
+
+  // Vérifier l'URL au chargement
+  const hash = window.location.hash.substring(1);
+  if (hash && pages.includes(hash)) {
+    goToPage(hash);
+  }
+
+  // Fonction de recherche dans le carnet
+  function setupSearch() {
+    const searchBtn = document.createElement("button");
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    searchBtn.className = "search-btn";
+    searchBtn.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: var(--gabon-green);
+          color: white;
+          border: none;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 20px;
+          z-index: 1001;
+          box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      `;
+
+    searchBtn.addEventListener("click", function () {
+      const searchTerm = prompt("Rechercher dans le carnet de santé :");
+      if (searchTerm) {
+        searchInDocument(searchTerm);
+      }
+    });
+
+    document.body.appendChild(searchBtn);
+  }
+
+  function searchInDocument(term) {
+    // Recherche simplifiée - pour une vraie implémentation, utiliser un moteur de recherche plus sophistiqué
+    let found = false;
+
+    pages.forEach((pageId) => {
+      const page = document.getElementById(pageId);
+      if (page) {
+        const text = page.textContent.toLowerCase();
+        if (text.includes(term.toLowerCase())) {
+          goToPage(pageId);
+          found = true;
+
+          // Surligner le terme trouvé (simplifié)
+          alert(
+            `Terme "${term}" trouvé sur la page ${pages.indexOf(pageId) + 1}`
+          );
         }
       }
+    });
 
-      // Gérer les boutons de navigation
-      if (prevBtn) prevBtn.disabled = index === 0;
-      if (nextBtn) nextBtn.disabled = index === totalPages - 1;
-
-      // Mettre à jour les boutons du menu
-      updateMenuButtons(index);
-
-      // Animation de la page
-      animatePage(currentPage);
+    if (!found) {
+      alert(`Le terme "${term}" n'a pas été trouvé dans le carnet.`);
     }
   }
 
-  // Mettre à jour l'état des boutons du menu
-  function updateMenuButtons(index) {
-    menuBtns.forEach((btn) => {
-      const pageId = btn.getAttribute("data-page");
-      const btnIndex = pages.indexOf(pageId);
-      if (btnIndex === index) {
-        btn.style.backgroundColor = "var(--gabon-green)";
-        btn.style.color = "white";
-      } else {
-        btn.style.backgroundColor = "white";
-        btn.style.color = "var(--gabon-green)";
+  // Initialiser l'application
+  init();
+  setupPrint();
+  setupSearch();
+
+  // Styles supplémentaires pour les éléments interactifs
+  const style = document.createElement("style");
+  style.textContent = `
+      .check-box.checked, 
+      .checkbox.checked {
+          background-color: var(--gabon-green);
+          position: relative;
       }
-    });
-  }
-
-  // Animation d'entrée de page
-  function animatePage(page) {
-    page.style.animation = "none";
-    setTimeout(() => {
-      page.style.animation = "fadeIn 0.5s ease";
-    }, 10);
-  }
-
-  // Simulation de cases à cocher pour les vaccins
-  document.querySelectorAll(".check-box").forEach((box) => {
-    box.addEventListener("click", function () {
-      if (this.style.backgroundColor === "var(--gabon-green)") {
-        this.style.backgroundColor = "";
-        this.textContent = "";
-      } else {
-        this.style.backgroundColor = "var(--gabon-green)";
-        this.textContent = "✓";
-        this.style.color = "white";
-        this.style.display = "flex";
-        this.style.alignItems = "center";
-        this.style.justifyContent = "center";
-        this.style.fontWeight = "bold";
+      
+      .check-box.checked::after,
+      .checkbox.checked::after {
+          content: '✓';
+          color: white;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 12px;
+          font-weight: bold;
       }
-    });
-  });
-
-  // Simulation de champs de formulaire interactifs
-  document.querySelectorAll(".form-field").forEach((field) => {
-    field.addEventListener("click", function () {
-      const currentText = this.textContent.trim();
-      const inputText = prompt("Entrez la valeur :", currentText);
-      if (inputText !== null) {
-        this.textContent = inputText;
+      
+      .radio.checked {
+          background-color: var(--gabon-blue);
+          position: relative;
       }
-    });
-  });
-
-  // Ajout de la date actuelle dans certains champs
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString("fr-FR");
-
-  // Mettre à jour la date dans les exemples
-  document.querySelectorAll('.form-field:contains("___")').forEach((field) => {
-    if (Math.random() > 0.7) {
-      // 30% de chance de pré-remplir
-      field.textContent = formattedDate;
-    }
-  });
-
-  // Fonction utilitaire pour le contenu contenant
-  Element.prototype.containsText = function (text) {
-    return this.textContent.includes(text);
-  };
+      
+      .radio.checked::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 8px;
+          height: 8px;
+          background-color: white;
+          border-radius: 50%;
+      }
+      
+      @media print {
+          .print-btn, .search-btn {
+              display: none !important;
+          }
+      }
+  `;
+  document.head.appendChild(style);
 });
-
-// Simulation de génération de QR Code
-function generateQRCode() {
-  const qrPlaceholder = document.querySelector(".qr-placeholder");
-  if (qrPlaceholder) {
-    qrPlaceholder.innerHTML = `
-            <div style="width: 100%; height: 100%; display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(10, 1fr);">
-                ${Array(100)
-                  .fill(0)
-                  .map(
-                    (_, i) =>
-                      `<div style="background-color: ${
-                        Math.random() > 0.5 ? "black" : "white"
-                      };"></div>`
-                  )
-                  .join("")}
-            </div>
-            <div style="position: absolute; bottom: 10px; font-size: 12px; color: #666;">eGabon-SIS</div>
-        `;
-  }
-}
-
-// Avec jsPDF
-const doc = new jsPDF();
-doc.setFontSize(20);
-doc.text("CARNET DE SANTÉ", 105, 20, { align: "center" });
-doc.save("carnet-sante-gabonais.pdf");
-
-// Générer le QR Code au chargement
-window.addEventListener("load", generateQRCode);

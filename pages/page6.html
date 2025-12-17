@@ -2,16 +2,201 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Page 6 — Carnet de Santé</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page 6 - Suivi Médical (Suite) - Carnet de Santé Gabonais</title>
     <link rel="stylesheet" href="../style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .page-continuation.previous {
+        margin-top: 0;
+        margin-bottom: 30px;
+      }
+
+      .imaging-table,
+      .bp-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 13px;
+      }
+
+      .imaging-table th,
+      .imaging-table td,
+      .bp-table th,
+      .bp-table td {
+        border: 1px solid var(--border-color);
+        padding: 8px;
+        text-align: center;
+      }
+
+      .imaging-table th,
+      .bp-table th {
+        background-color: #3498db;
+        color: white;
+        font-weight: 600;
+        font-size: 12px;
+      }
+
+      .annual-checkup-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+      }
+
+      .checkup-year {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        border: 2px solid #dee2e6;
+      }
+
+      .checkup-year h4 {
+        color: #3498db;
+        margin: 0 0 15px 0;
+        text-align: center;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #3498db;
+      }
+
+      .checkup-data {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .data-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 0;
+        border-bottom: 1px dashed #dee2e6;
+      }
+
+      .data-label {
+        font-weight: 600;
+        color: #666;
+        font-size: 14px;
+      }
+
+      .data-field {
+        color: #333;
+        font-weight: 500;
+      }
+
+      .weight-chart {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      .chart-grid {
+        display: flex;
+        height: 200px;
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .chart-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-right: 10px;
+        font-size: 12px;
+        color: #666;
+        border-right: 2px solid #dee2e6;
+        min-width: 50px;
+      }
+
+      .chart-area {
+        flex: 1;
+        position: relative;
+        padding-top: 10px;
+      }
+
+      .chart-months {
+        display: flex;
+        justify-content: space-around;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-size: 11px;
+        color: #666;
+      }
+
+      .chart-legend {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 20px;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+      }
+
+      .legend-color {
+        width: 15px;
+        height: 15px;
+        border-radius: 3px;
+      }
+
+      .medical-notes {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 15px;
+      }
+
+      .notes-field {
+        margin-bottom: 20px;
+      }
+
+      .notes-label {
+        font-weight: 600;
+        color: #3498db;
+        margin-bottom: 10px;
+      }
+
+      .notes-content {
+        min-height: 100px;
+        line-height: 1.8;
+        padding: 15px;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid #dee2e6;
+      }
+
+      .notes-signature {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 2px dashed #dee2e6;
+      }
+
+      .signature-line {
+        font-weight: 600;
+        color: #666;
+      }
+
+      .signature-date {
+        color: #666;
+      }
+    </style>
   </head>
-  <body class="page">
-    <header class="page-header">
-      <h1>Page 6</h1>
-      <p>Examen clinique — vision, audition, dents.</p>
-    </header>
-    <main class="page-content">
+  <body>
+    <div class="container">
+      <!-- PAGE 6 : SUIVI MÉDICAL (SUITE) -->
       <div class="page" id="page6">
         <div class="page-header">
           <div class="section-title">
@@ -293,329 +478,12 @@
           <div class="page-number">Page 6</div>
         </div>
       </div>
+    </div>
 
-      <style>
-        .medical-table,
-        .exam-table,
-        .imaging-table,
-        .bp-table {
-          width: 100%;
-          border-collapse: collapse;
-          margin-top: 10px;
-          font-size: 13px;
-        }
-
-        .medical-table th,
-        .medical-table td,
-        .exam-table th,
-        .exam-table td,
-        .imaging-table th,
-        .imaging-table td,
-        .bp-table th,
-        .bp-table td {
-          border: 1px solid var(--border-color);
-          padding: 8px;
-          text-align: center;
-        }
-
-        .medical-table th,
-        .exam-table th,
-        .imaging-table th,
-        .bp-table th {
-          background-color: #3498db;
-          color: white;
-          font-weight: 600;
-          font-size: 12px;
-        }
-
-        .appointments-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 20px;
-          margin-top: 20px;
-        }
-
-        .appointment-card {
-          background: white;
-          border: 2px solid #dee2e6;
-          border-radius: 10px;
-          padding: 15px;
-          display: flex;
-          gap: 15px;
-          transition: all 0.3s;
-        }
-
-        .appointment-card:hover {
-          border-color: #3498db;
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .appointment-date {
-          background: #3498db;
-          color: white;
-          border-radius: 8px;
-          padding: 10px;
-          text-align: center;
-          min-width: 70px;
-        }
-
-        .date-day {
-          font-size: 24px;
-          font-weight: bold;
-        }
-
-        .date-month {
-          font-size: 14px;
-          text-transform: uppercase;
-        }
-
-        .date-year {
-          font-size: 12px;
-          margin-top: 5px;
-        }
-
-        .appointment-details {
-          flex: 1;
-        }
-
-        .appointment-type {
-          font-weight: bold;
-          color: #3498db;
-          margin-bottom: 5px;
-        }
-
-        .appointment-time,
-        .appointment-location,
-        .appointment-motif {
-          font-size: 12px;
-          color: #666;
-          margin-bottom: 3px;
-        }
-
-        .annual-checkup-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 25px;
-          margin-top: 20px;
-        }
-
-        .checkup-year {
-          background: #f8f9fa;
-          border-radius: 10px;
-          padding: 20px;
-          border: 2px solid #dee2e6;
-        }
-
-        .checkup-year h4 {
-          color: #3498db;
-          margin: 0 0 15px 0;
-          text-align: center;
-          padding-bottom: 10px;
-          border-bottom: 2px solid #3498db;
-        }
-
-        .checkup-data {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-
-        .data-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 5px 0;
-          border-bottom: 1px dashed #dee2e6;
-        }
-
-        .data-label {
-          font-weight: 600;
-          color: #666;
-          font-size: 14px;
-        }
-
-        .data-field {
-          color: #333;
-          font-weight: 500;
-        }
-
-        .weight-chart {
-          background: white;
-          border: 2px solid #dee2e6;
-          border-radius: 10px;
-          padding: 20px;
-          margin-top: 20px;
-        }
-
-        .chart-grid {
-          display: flex;
-          height: 200px;
-          margin-bottom: 20px;
-          position: relative;
-        }
-
-        .chart-y-axis {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          padding-right: 10px;
-          font-size: 12px;
-          color: #666;
-          border-right: 2px solid #dee2e6;
-          min-width: 50px;
-        }
-
-        .chart-area {
-          flex: 1;
-          position: relative;
-          padding-top: 10px;
-        }
-
-        .chart-months {
-          display: flex;
-          justify-content: space-around;
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          font-size: 11px;
-          color: #666;
-        }
-
-        .chart-legend {
-          display: flex;
-          justify-content: center;
-          gap: 30px;
-          margin-top: 20px;
-        }
-
-        .legend-item {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          font-size: 14px;
-        }
-
-        .legend-color {
-          width: 15px;
-          height: 15px;
-          border-radius: 3px;
-        }
-
-        .medical-notes {
-          background: #f8f9fa;
-          border-radius: 10px;
-          padding: 20px;
-          margin-top: 15px;
-        }
-
-        .notes-field {
-          margin-bottom: 20px;
-        }
-
-        .notes-label {
-          font-weight: 600;
-          color: #3498db;
-          margin-bottom: 10px;
-        }
-
-        .notes-content {
-          min-height: 100px;
-          line-height: 1.8;
-          padding: 15px;
-          background: white;
-          border-radius: 8px;
-          border: 1px solid #dee2e6;
-        }
-
-        .notes-signature {
-          display: flex;
-          justify-content: space-between;
-          margin-top: 20px;
-          padding-top: 15px;
-          border-top: 2px dashed #dee2e6;
-        }
-
-        .signature-line {
-          font-weight: 600;
-          color: #666;
-        }
-
-        .signature-date {
-          color: #666;
-        }
-
-        .page-continuation {
-          text-align: center;
-          margin: 30px 0;
-          padding: 20px;
-          background: #f8f9fa;
-          border-radius: 8px;
-          border: 2px dashed #dee2e6;
-        }
-
-        .page-continuation.previous {
-          margin-top: 0;
-          margin-bottom: 30px;
-        }
-
-        .continuation-arrow {
-          font-size: 24px;
-          color: var(--gabon-green);
-          margin-bottom: 10px;
-        }
-
-        .continuation-text {
-          font-size: 14px;
-          color: #666;
-          font-style: italic;
-        }
-
-        @media (max-width: 768px) {
-          .medical-table,
-          .exam-table,
-          .imaging-table,
-          .bp-table {
-            font-size: 11px;
-          }
-
-          .medical-table th,
-          .medical-table td,
-          .exam-table th,
-          .exam-table td,
-          .imaging-table th,
-          .imaging-table td,
-          .bp-table th,
-          .bp-table td {
-            padding: 5px;
-          }
-
-          .appointments-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .annual-checkup-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .chart-grid {
-            height: 150px;
-          }
-
-          .chart-y-axis {
-            min-width: 40px;
-            font-size: 10px;
-          }
-
-          .chart-months {
-            font-size: 9px;
-          }
-        }
-      </style>
-      <nav class="page-actions">
-        <a class="btn" href="sommaire.html">Sommaire</a>
-        <a class="btn" href="page7.html">Suivant</a>
-      </nav>
-    </main>
+    <script>
+      setTimeout(function () {
+        window.location.href = "../index.html#page6";
+      }, 1000);
+    </script>
   </body>
 </html>
