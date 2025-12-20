@@ -28,49 +28,33 @@
               <div>
                 <img
                   src="assets/logos/Image1.png"
-                  alt="USTS"
+                  alt="Logo Université"
                   width="100%"
                   height="100%"
                 />
               </div>
-              <span>Unité de Suivi et de Traitement Sanitaire</span>
             </div>
           </div>
         </div>
 
         <div class="cover-title">
           <h1>CARNET DE SANTÉ</h1>
-          <h2>POUR ADULTES</h2>
           <div class="subtitle">Document Officiel de Suivi Médical</div>
           <div class="edition">Édition Gabon 2024</div>
         </div>
 
-        <div class="cover-info">
-          <div class="info-box">
-            <i class="fas fa-shield-alt"></i>
-            <p>Document confidentiel protégé par le secret médical</p>
-          </div>
-          <div class="info-box">
-            <i class="fas fa-lock"></i>
-            <p>À conserver précieusement</p>
-          </div>
-          <div class="info-box">
-            <i class="fas fa-qrcode"></i>
-            <p>QR Code vers eGabon-SIS</p>
-          </div>
-        </div>
-
-        <div class="qr-section">
-          <div class="qr-code">
-            <!-- Simulation QR code -->
-            <div class="qr-placeholder">
-              <div class="qr-pattern"></div>
-              <div class="qr-text">eGabon-SIS</div>
-            </div>
-          </div>
-          <div class="ministere">
-            Ministère de la Santé et de la Protection Sociale<br />
-            République Gabonaise
+        <div class="ministries-section">
+          <div class="ministry-text">
+            <p><strong>MINISTERE DE LA DEFENSE NATIONALE</strong></p>
+            <p class="separator">________________________</p>
+            <p><strong>MINISTERE DE L'ENSEIGNEMENT SUPERIEUR,</strong></p>
+            <p><strong>DE LA RECHERCHE SCIENTIFIQUE ET DE</strong></p>
+            <p><strong>L'INNOVATION TECHNOLOGIQUE</strong></p>
+            <p class="separator">________________________</p>
+            <p><strong>UNIVERSITE DES SCIENCES ET</strong></p>
+            <p><strong>TECHNIQUES DE LA SANTE</strong></p>
+            <p class="separator">________________________</p>
+            <p><strong>INFIRMERIE UNIVERSITAIRE</strong></p>
           </div>
         </div>
 
@@ -94,7 +78,7 @@
           </div>
           <div class="header-logos">
             <span class="logo-small">RG</span>
-            <span class="logo-small">USTS</span>
+            <span class="logo-small">Universit�</span>
           </div>
         </div>
 
@@ -131,14 +115,11 @@
                 <label>Grade / Profession :</label>
                 <div class="form-field">_________________________________</div>
               </div>
-              <div class="form-row">
-                <div class="form-group half">
-                  <label>Groupe sanguin :</label>
-                  <div class="form-field">________</div>
-                </div>
-                <div class="form-group half">
-                  <label>Rhésus :</label>
-                  <div class="radio-group">
+              <div class="form-group">
+                <label>Groupage sanguin et Rhésus :</label>
+                <div class="form-inline-group">
+                  <div class="form-field inline">_____ (A, B, AB, O)</div>
+                  <div class="radio-group inline">
                     <span class="radio-option"
                       ><span class="radio"></span> Positif (+)
                     </span>
@@ -200,16 +181,6 @@
               <i class="fas fa-camera"></i>
               <div>Photo 3x4</div>
               <div class="photo-instruction">Coller ici</div>
-            </div>
-            <div class="photo-info">
-              <div class="info-item">
-                <i class="fas fa-barcode"></i>
-                <span>N° Carnet: <strong>GAB-2024-XXXXXX</strong></span>
-              </div>
-              <div class="info-item">
-                <i class="fas fa-calendar"></i>
-                <span>Date d'émission: ___/___/____</span>
-              </div>
             </div>
           </div>
         </div>
@@ -386,7 +357,7 @@
           </div>
           <div class="header-logos">
             <span class="logo-small">RG</span>
-            <span class="logo-small">USTS</span>
+            <span class="logo-small">Universit�</span>
           </div>
         </div>
 
@@ -638,7 +609,7 @@
           </div>
           <div class="header-logos">
             <span class="logo-small">RG</span>
-            <span class="logo-small">USTS</span>
+            <span class="logo-small">Universit�</span>
           </div>
         </div>
 
@@ -1114,7 +1085,7 @@
           </div>
           <div class="header-logos">
             <span class="logo-small">RG</span>
-            <span class="logo-small">USTS</span>
+            <span class="logo-small">Universit�</span>
           </div>
         </div>
 
@@ -1312,7 +1283,7 @@
           </div>
           <div class="header-logos">
             <span class="logo-small">RG</span>
-            <span class="logo-small">USTS</span>
+            <span class="logo-small">Universit�</span>
           </div>
         </div>
 
@@ -1904,19 +1875,61 @@
         }
       </style>
 
-      <!-- PAGE 7 : ÉTAT DE SANTÉ -->
+      <!-- PAGE 7 : SUIVI MÉDICAL -->
       <div class="page" id="page7">
         <div class="page-header">
           <div class="section-title">
-            <div class="icon"><i class="fas fa-heartbeat"></i></div>
-            <h2>ÉTAT DE SANTÉ ACTUEL</h2>
+            <div class="icon"><i class="fas fa-stethoscope"></i></div>
+            <h2>SUIVI MÉDICAL</h2>
             <div class="section-number">07</div>
           </div>
           <div class="header-logos">
             <span class="logo-small">RG</span>
-            <span class="logo-small">USTS</span>
+            <span class="logo-small">Université</span>
           </div>
         </div>
+
+        <div class="content">
+          <div class="form-section">
+            <div class="consultation-entry">
+              <div class="consultation-header">
+                <label><strong>Date et heure de la consultation :</strong></label>
+                <div class="form-field">___/___/____ à ___h___</div>
+              </div>
+              <div class="consultation-body">
+                <label><strong>Motif de la consultation :</strong></label>
+                <div class="form-field-large">
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                </div>
+              </div>
+              <div class="consultation-footer">
+                <div class="signature-box">
+                  <label>Nom et signature du médecin :</label>
+                  <div class="signature-line">_________________________</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-footer">
+          <div class="watermark">SUIVI</div>
+          <div class="page-number">Page 7</div>
+        </div>
+      </div>
 
         <div class="content">
           <!-- Section 1: Signes vitaux actuels -->
@@ -2259,19 +2272,61 @@
         </div>
       </div>
 
-      <!-- PAGE 8 : ÉTAT DE SANTÉ (SUITE ET ÉVALUATION) -->
+      <!-- PAGE 8 : SUIVI MÉDICAL (SUITE) -->
       <div class="page" id="page8">
         <div class="page-header">
           <div class="section-title">
-            <div class="icon"><i class="fas fa-heartbeat"></i></div>
-            <h2>ÉTAT DE SANTÉ (ÉVALUATION)</h2>
+            <div class="icon"><i class="fas fa-stethoscope"></i></div>
+            <h2>SUIVI MÉDICAL (SUITE)</h2>
             <div class="section-number">08</div>
           </div>
           <div class="header-logos">
             <span class="logo-small">RG</span>
-            <span class="logo-small">USTS</span>
+            <span class="logo-small">Université</span>
           </div>
         </div>
+
+        <div class="content">
+          <div class="form-section">
+            <div class="consultation-entry">
+              <div class="consultation-header">
+                <label><strong>Date et heure de la consultation :</strong></label>
+                <div class="form-field">___/___/____ à ___h___</div>
+              </div>
+              <div class="consultation-body">
+                <label><strong>Motif de la consultation :</strong></label>
+                <div class="form-field-large">
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                  ________________________________________________________<br/>
+                </div>
+              </div>
+              <div class="consultation-footer">
+                <div class="signature-box">
+                  <label>Nom et signature du médecin :</label>
+                  <div class="signature-line">_________________________</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-footer">
+          <div class="watermark">SUIVI</div>
+          <div class="page-number">Page 8</div>
+        </div>
+      </div>
 
         <div class="content">
           <!-- Indication de suite -->
@@ -3435,7 +3490,7 @@
           </div>
           <div class="header-logos">
             <span class="logo-small">RG</span>
-            <span class="logo-small">USTS</span>
+            <span class="logo-small">Universit�</span>
           </div>
         </div>
 
@@ -3701,7 +3756,7 @@
           </div>
           <div class="header-logos">
             <span class="logo-small">RG</span>
-            <span class="logo-small">USTS</span>
+            <span class="logo-small">Universit�</span>
           </div>
         </div>
 
@@ -4702,7 +4757,7 @@
           </div>
           <div class="header-logos">
             <span class="logo-small">RG</span>
-            <span class="logo-small">USTS</span>
+            <span class="logo-small">Universit�</span>
           </div>
         </div>
 
@@ -4939,7 +4994,7 @@
           </div>
           <div class="header-logos">
             <span class="logo-small">RG</span>
-            <span class="logo-small">USTS</span>
+            <span class="logo-small">Universit�</span>
           </div>
         </div>
 
@@ -5109,50 +5164,8 @@
             </div>
           </div>
 
-          <!-- Section 6: Accès numérique -->
-          <div class="form-section">
-            <h3><i class="fas fa-qrcode"></i> Accès numérique</h3>
-            <div class="digital-section">
-              <div class="qr-container-small">
-                <div class="qr-box">
-                  <div class="qr-pattern">
-                    <div class="qr-row">
-                      <span class="qr-dot black"></span>
-                      <span class="qr-dot black"></span>
-                      <span class="qr-dot black"></span>
-                      <span class="qr-dot black"></span>
-                    </div>
-                    <div class="qr-row">
-                      <span class="qr-dot black"></span>
-                      <span class="qr-dot white"></span>
-                      <span class="qr-dot white"></span>
-                      <span class="qr-dot black"></span>
-                    </div>
-                    <div class="qr-row">
-                      <span class="qr-dot black"></span>
-                      <span class="qr-dot white"></span>
-                      <span class="qr-dot black"></span>
-                      <span class="qr-dot black"></span>
-                    </div>
-                    <div class="qr-row">
-                      <span class="qr-dot black"></span>
-                      <span class="qr-dot black"></span>
-                      <span class="qr-dot black"></span>
-                      <span class="qr-dot black"></span>
-                    </div>
-                  </div>
-                  <div class="qr-text">eGabon-SIS</div>
-                </div>
-              </div>
-
-              <div class="digital-links">
-                <div class="digital-item">
-                  <i class="fas fa-globe-africa"></i>
-                  <div class="digital-info">
-                    <div class="digital-title">Portail Santé Gabon</div>
-                    <div class="digital-url">www.sante.gouv.ga</div>
-                  </div>
-                </div>
+          <!-- Section 6: Accès numérique supprimée -->
+          <div class="form-section" style="display: none;\">\n            <h3><i class=\"fas fa-qrcode\"></i> Accès numérique</h3>
 
                 <div class="digital-item">
                   <i class="fas fa-mobile-alt"></i>
@@ -5912,3 +5925,5 @@
     <script src="script.js"></script>
   </body>
 </html>
+
+

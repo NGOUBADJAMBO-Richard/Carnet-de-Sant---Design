@@ -55,7 +55,7 @@ body {
 .page {
   width: var(--page-width);
   min-height: var(--page-height);
-  background: var(--white);
+  background: linear-gradient(135deg, #f9fafc 0%, #f0f8f5 100%);
   padding: var(--margin-page);
   position: relative;
   border-bottom: 1px solid var(--border-color);
@@ -65,7 +65,7 @@ body {
   background: linear-gradient(
     135deg,
     var(--gabon-green-light) 0%,
-    var(--white) 50%,
+    #f5f9f7 50%,
     var(--gabon-blue-light) 100%
   );
   display: flex;
@@ -217,55 +217,8 @@ body {
   text-align: center;
 }
 
-/* QR Code section */
-.qr-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin: 30px 0;
-  padding: 20px;
-  background: var(--background-light);
-  border-radius: 10px;
-  border: 2px solid var(--border-color);
-}
-
-.qr-code {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.qr-placeholder {
-  width: 150px;
-  height: 150px;
-  background: var(--white);
-  border: 2px solid var(--text-dark);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-}
-
-.qr-pattern {
-  width: 100px;
-  height: 100px;
-  background: repeating-linear-gradient(
-    45deg,
-    var(--text-dark),
-    var(--text-dark) 2px,
-    transparent 2px,
-    transparent 10px
-  );
-}
-
-.qr-text {
-  font-size: 12px;
-  font-weight: bold;
-  color: var(--text-dark);
-}
+/* QR Code section - SUPPRIMÉ */
+/* Styles QR code hidden */
 
 .ministere {
   flex: 1;
@@ -872,4 +825,104 @@ body {
   .menu-btn {
     min-width: 140px;
   }
+}
+
+/* Styles pour les sections ministères */
+.ministries-section {
+  text-align: center;
+  padding: 30px 20px;
+  margin: 20px 0;
+}
+
+.ministry-text {
+  line-height: 1.8;
+}
+
+.ministry-text p {
+  margin: 8px 0;
+  font-size: 12px;
+}
+
+.ministry-text .separator {
+  color: var(--border-color);
+  margin: 10px 0;
+}
+
+/* Inline form groups for blood type */
+.form-inline-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.form-field.inline {
+  min-width: 120px;
+  padding: 5px 10px;
+}
+
+.radio-group.inline {
+  display: flex;
+  gap: 15px;
+}
+
+/* Consultation entry styles */
+.consultation-entry {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.consultation-header {
+  margin-bottom: 15px;
+}
+
+.consultation-header label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.consultation-body {
+  margin: 20px 0;
+}
+
+.consultation-body label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-field-large {
+  min-height: 300px;
+  border: 1px solid var(--border-light);
+  padding: 10px;
+  border-radius: 4px;
+  font-family: monospace;
+  line-height: 1.8;
+}
+
+.consultation-footer {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+}
+
+.signature-box label {
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.signature-line {
+  border-bottom: 1px solid var(--text-dark);
+  padding-bottom: 2px;
+  width: 250px;
+  margin-top: 10px;
 }
